@@ -20,15 +20,23 @@
                class="colore903 rexx24 tooltip" data_tooltip_content="{$LNG.tech.903}" style="background-image:url({$dpath}img/resources/903f.png)">
             </div>
             <div id="tabs">
-               <ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
+               <input type="button" class="rexx25 tooltip" data_tooltip_content="{$LNG.bs_wait}" onclick="return add();" value="+">
+               <ul class="nav nav-tabs" id="myTab" role="tablist">
+                  
                   {section name=tab start=0 loop=$Slots}
-                  <li class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"><a href="#tabs-{$smarty.section.tab.index}">{$LNG.bs_acs_slot} {$smarty.section.tab.index + 1}</a></li>
+                  <li class="nav-item">
+                     {* <button class="nav-link active" id="tabs-{$smarty.section.tab.index}" data-bs-toggle="tab" data-bs-target="#tabs-{$smarty.section.tab.index}" type="button" role="tab" aria-controls="tabs-{$smarty.section.tab.index}">
+                        {$LNG.bs_acs_slot} {$smarty.section.tab.index + 1}
+                     </button> *}
+                  <a class="nav-link tab-links" data-toggle="tab" id="tabs-{$smarty.section.tab.index}" href="#tabs-{$smarty.section.tab.index}">{$LNG.bs_acs_slot} {$smarty.section.tab.index + 1}</a>
+                  </li>
                   {/section}
-                  <input type="button" class="rexx25 tooltip" data_tooltip_content="{$LNG.bs_wait}" onclick="return add();" value="+">
+                  
                </ul>
             <div class="clear"></div>
+              <div class="tab-content">
                {section name=content start=0 loop=$Slots}
-               <div id="tabs-{$smarty.section.content.index}" class="ui-tabs-panel ui-widget-content ui-corner-bottom">
+               <div id="tabs-{$smarty.section.content.index}" class="tab-pane simulationPanel">
                 <div class="rexx14" style="width: 702px;"> 
                     <div class="rexx19">
                         <span class="rexx21">{$LNG.bs_techno}</span>
@@ -79,6 +87,7 @@
                   <div class="clear"></div>
                </div>
                {/section}
+               </div>
             </div>
             <div class="alleanza57" style="margin-top: 5px;"></div>
             <div class="fleettab1" style="height: 47px;"> 

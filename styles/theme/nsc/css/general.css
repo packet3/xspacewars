@@ -506,6 +506,8 @@ p{
 /*tooltip styles to override bootstrap*/
 .tooltip {
   opacity: 1 !important;
+  position: relative !important;
+  display: inline !important;
 }
 /*tooltip_class*/
 .tooltip_class_table{
@@ -1603,3 +1605,4 @@ body.swal2-shown > [aria-hidden="true"] {
   transition: 0.1s filter;
   filter: blur(10px);
 }
+

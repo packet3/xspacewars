@@ -1597,3 +1597,9 @@ table.gray_stripe_th td{
     background: #000d1f;
     border: 1px solid #000;
 }
+
+/*Blurred background for sweetalert2*/
+body.swal2-shown > [aria-hidden="true"] {
+  transition: 0.1s filter;
+  filter: blur(10px);
+}

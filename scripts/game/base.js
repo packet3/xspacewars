@@ -271,7 +271,7 @@ var Dialog = {
 			if (request.readyState == 4) {
 				Swal.fire({
 					html: request.responseText,
-					width: width,
+					width: '65%',
 					showCloseButton: false,
 					showConfirmButton: false,
 					padding: 0,

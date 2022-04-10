@@ -40,15 +40,15 @@
                 <div class="rexx14" style="width: 702px;"> 
                     <div class="rexx19">
                         <span class="rexx21">{$LNG.bs_techno}</span>
-                        <span class="rexx20">{$LNG.bs_reset}</span>
-                        <span class="rexx20">{$LNG.bs_reset}</span>
+                        <span id="tech-defend-reset-{$smarty.section.content.index}" class="rexx20">{$LNG.bs_reset}</span>
+                        <span id="tech-attack-reset-{$smarty.section.content.index}" class="rexx20">{$LNG.bs_reset}</span>
                     </div>
                     {foreach $reslist.battle_bonus as $id}
                     <div class="rexx16">
                         <a href="#" onclick="return Dialog.info({$id})"><img src="{$dpath}gebaeude/{$id}.gif" alt="{$LNG.tech.$id}" /></a>
                         <span>{$LNG.tech.{$id}}</span>
-                        <input type="text" size="10" value="{if isset($battleinput.{$smarty.section.content.index}.1.{$id})}{$battleinput.{$smarty.section.content.index}.1.{$id}}{else}0{/if}" name="battleinput[{$smarty.section.content.index}][1][{$id}]" class="rexx18">
-                        <input type="text" size="10" value="{if isset($battleinput.{$smarty.section.content.index}.0.{$id})}{$battleinput.{$smarty.section.content.index}.0.{$id}}{else}0{/if}" name="battleinput[{$smarty.section.content.index}][0][{$id}]" class="rexx17">
+                        <input type="text" data-tech-defend-reset-{$smarty.section.content.index}="tech_defend_reset-{$smarty.section.content.index}" size="10" data-battlesim-index="{$smarty.section.content.index}" value="{if isset($battleinput.{$smarty.section.content.index}.1.{$id})}{$battleinput.{$smarty.section.content.index}.1.{$id}}{else}0{/if}" name="battleinput[{$smarty.section.content.index}][1][{$id}]" class="rexx18">
+                        <input type="text" data-tech-attack-reset-{$smarty.section.content.index}="tech_attack_reset-{$smarty.section.content.index}" size="10" value="{if isset($battleinput.{$smarty.section.content.index}.0.{$id})}{$battleinput.{$smarty.section.content.index}.0.{$id}}{else}0{/if}" name="battleinput[{$smarty.section.content.index}][0][{$id}]" class="rexx17">
                     </div>
                     {/foreach}
                 </div>
@@ -57,15 +57,15 @@
                   <div class="rexx15">
                   <div class="rexx19">
                     <span class="rexx21">{$LNG.tech.200}</span>
-                    <span class="rexx20">{$LNG.bs_reset}</span>
-                    <span class="rexx20">{$LNG.bs_reset}</span>
+                    <span id="ships-defend-reset-{$smarty.section.content.index}" class="rexx20">{$LNG.bs_reset}</span>
+                    <span id="ships-attack-reset-{$smarty.section.content.index}" class="rexx20">{$LNG.bs_reset}</span>
                   </div>
                      {foreach $reslist.fleet as $id}
                      <div class="rexx16">
                         <a href="#" onclick="return Dialog.info({$id})"><img src="{$dpath}gebaeude/{$id}.gif" alt="{$LNG.tech.$id}" /></a>
                         <span>{$LNG.tech.$id}</span>
-                        <input class="fleetAttCountBS rexx18" type="text" size="10" value="{if isset($battleinput.{$smarty.section.content.index}.1.$id)}{$battleinput.{$smarty.section.content.index}.1.$id}{else}0{/if}" name="battleinput[{$smarty.section.content.index}][1][{$id}]">
-                        <input class="fleetDefCountBS rexx17" type="text" size="10" value="{if isset($battleinput.{$smarty.section.content.index}.0.$id)}{$battleinput.{$smarty.section.content.index}.0.$id}{else}0{/if}" name="battleinput[{$smarty.section.content.index}][0][{$id}]">
+                        <input class="fleetAttCountBS rexx18" type="text" data-ships-defend-reset-{$smarty.section.content.index}="ships_defend_reset-{$smarty.section.content.index}" size="10" value="{if isset($battleinput.{$smarty.section.content.index}.1.$id)}{$battleinput.{$smarty.section.content.index}.1.$id}{else}0{/if}" name="battleinput[{$smarty.section.content.index}][1][{$id}]">
+                        <input class="fleetDefCountBS rexx17" type="text" data-ships-attack-reset-{$smarty.section.content.index}="ships_attack_reset-{$smarty.section.content.index}" size="10" value="{if isset($battleinput.{$smarty.section.content.index}.0.$id)}{$battleinput.{$smarty.section.content.index}.0.$id}{else}0{/if}" name="battleinput[{$smarty.section.content.index}][0][{$id}]">
                     </div>
                      {/foreach} 
                   </div>
@@ -73,13 +73,13 @@
                     <div class="rexx15">
                     <div class="rexx19">
                         <span class="rexx21">{$LNG.tech.400}</span>
-                        <span class="rexx20">{$LNG.bs_reset}</span>
+                        <span id="planets-defend-reset-{$smarty.section.content.index}" class="rexx20">{$LNG.bs_reset}</span>
                     </div>
                      {foreach $reslist.defense as $id}
                      <div class="rexx16">
                         <a href="#" onclick="return Dialog.info({$id})"><img src="{$dpath}gebaeude/{$id}.gif" alt="{$LNG.tech.$id}" /></a>
                         <span>{$LNG.tech.$id}</span>
-                        <input class="fleetDefCountBS rexx18" type="text" size="10" value="{if isset($battleinput.{$smarty.section.content.index}.1.$id)}{$battleinput.{$smarty.section.content.index}.1.$id}{else}0{/if}" name="battleinput[{$smarty.section.content.index}][1][{$id}]">
+                        <input class="fleetDefCountBS rexx18" type="text" data-planets-defend-reset-{$smarty.section.content.index}="planets_defend_reset-{$smarty.section.content.index}" size="10" value="{if isset($battleinput.{$smarty.section.content.index}.1.$id)}{$battleinput.{$smarty.section.content.index}.1.$id}{else}0{/if}" name="battleinput[{$smarty.section.content.index}][1][{$id}]">
                     </div>
                      {/foreach}    
                     </div>

@@ -184,52 +184,52 @@
                         <div class="card-body">
                             <p class="card-title">{$LNG.ov_panel_root}</p>
                             <div class="row">      
-                                <div class="col-1">
-                                    <div class="card mr-1 background-border-black-blue"> 
+                                <div class="col-1 g-0">
+                                    <div class="card-custom mr-1 background-border-black-blue"> 
                                         {if isModuleAvailable($smarty.const.MODULE_RACE)}
-                                        <a href="game.php?page=race"><div class="overvieew15 overvire tooltip" style="background: rgba(0, 0, 0, 0.25) url({$dpath}gebaeude/{$race}.gif) no-repeat center; background-size: 50px;" data_tooltip_content="{$LNG.tech.$race}"></div></a>
+                                        <a class="tooltip"  data_tooltip_content="{$LNG.tech.$race}" href="game.php?page=race"><div class="overvieew15 overvire" style="background: rgba(0, 0, 0, 0.25) url({$dpath}gebaeude/{$race}.gif) no-repeat center; background-size: 50px;"></div></a>
                                         {/if}
                                     </div>
                                 </div>
-                                <div class="col-1">
-                                    <div class="card mr-1 background-border-black-blue"> 
+                                <div class="col-1 g-0">
+                                    <div class="card-custom mr-1 background-border-black-blue"> 
                                         {if isModuleAvailable($smarty.const.MODULE_FORMGOVERNMENT)}
-                                        <a href="game.php?page=formgovernment"><div class="overvieew15 overvire tooltip" style="background: rgba(0, 0, 0, 0.25) url({$dpath}gebaeude/{$formgovernment}.png) no-repeat center; background-size: 50px;" data_tooltip_content="{$LNG.tech.$formgovernment}"></div></a>
+                                        <a class="tooltip" data_tooltip_content="{$LNG.tech.$formgovernment}" href="game.php?page=formgovernment"><div class="overvieew15 overvire" style="background: rgba(0, 0, 0, 0.25) url({$dpath}gebaeude/{$formgovernment}.png) no-repeat center; background-size: 50px;" ></div></a>
                                         {/if}
                                     </div>
                                 </div>
-                                <div class="col-1">
-                                    <div class="card mr-1 background-border-black-blue"> 
+                                <div class="col-1 g-0">
+                                    <div class="card-custom mr-1 background-border-black-blue"> 
                                         {if isModuleAvailable($smarty.const.MODULE_ETHICS)}
-                                        <a href="game.php?page=ethics"><div class="overvieew15 overvire tooltip" style="background: rgba(0, 0, 0, 0.25) url({$dpath}gebaeude/{$ethics}.png) no-repeat center; background-size: 50px;" data_tooltip_content="{$LNG.tech.$ethics}"></div></a>
+                                        <a class="tooltip" data_tooltip_content="{$LNG.tech.$ethics}"  href="game.php?page=ethics"><div class="overvieew15 overvire" style="background: rgba(0, 0, 0, 0.25) url({$dpath}gebaeude/{$ethics}.png) no-repeat center; background-size: 50px;" ></div></a>
                                         {/if}
                                     </div>
                                 </div>
-                                <div class="col-1">
-                                    <div class="card mr-1 background-border-black-blue"> 
+                                <div class="col-1 g-0">
+                                    <div class="card-custom mr-1 background-border-black-blue"> 
                                         {if isModuleAvailable($smarty.const.MODULE_INFO_BONUS)}
-                                        <a href="game.php?page=infobonus"><div class="overvieew15 overvire tooltip" style="background: rgba(0, 0, 0, 0.25) url({$dpath}img/title/infobonus.png) no-repeat center; background-size: 50px;" data_tooltip_content="{$LNG.lm_infobonus}"></div></a>
+                                        <a class="tooltip" data_tooltip_content="{$LNG.lm_infobonus}"  href="game.php?page=infobonus"><div class="overvieew15 overvire" style="background: rgba(0, 0, 0, 0.25) url({$dpath}img/title/infobonus.png) no-repeat center; background-size: 50px;" ></div></a>
                                         {/if} 
                                     </div>
                                 </div>
-                                <div class="col-1">
-                                    <div class="card mr-1 background-border-black-blue"> 
+                                <div class="col-1 g-0">
+                                    <div class="card-custom mr-1 background-border-black-blue"> 
                                         {if isModuleAvailable($smarty.const.MODULE_PARTY)}
-                                        <a href="game.php?page=party"><div class="overvieew15 overvire tooltip" style="background: rgba(0, 0, 0, 0.25) url({$dpath}img/title/party.png) no-repeat center; background-size: 50px;" data_tooltip_content="{$LNG.lm_party}"></div></a>
+                                        <a class="tooltip"  data_tooltip_content="{$LNG.lm_party}"  href="game.php?page=party"><div class="overvieew15 overvire" style="background: rgba(0, 0, 0, 0.25) url({$dpath}img/title/party.png) no-repeat center; background-size: 50px;"></div></a>
                                         {/if} 
                                     </div>
                                 </div>
-                                <div class="col-1">
-                                    <div class="card mr-1 background-border-black-blue"> 
+                                <div class="col-1 g-0">
+                                    <div class="card-custom mr-1 background-border-black-blue"> 
                                         {if isModuleAvailable($smarty.const.MODULE_IDEOLOGIES)}
-                                        <a href="game.php?page=ideologies"><div class="overvieew15 overvire tooltip" style="background: rgba(0, 0, 0, 0.25) url({$dpath}img/title/ideologies.png) no-repeat center; background-size: 50px;" data_tooltip_content="{$LNG.lm_ideologies}"></div></a>
+                                        <a class="tooltip" data_tooltip_content="{$LNG.lm_ideologies}"   href="game.php?page=ideologies"><div class="overvieew15 overvire" style="background: rgba(0, 0, 0, 0.25) url({$dpath}img/title/ideologies.png) no-repeat center; background-size: 50px;" ></div></a>
                                         {/if}  
                                     </div>
                                 </div>
-                                <div class="col-1">
-                                    <div class="card mr-1 background-border-black-blue"> 
+                                <div class="col-1 g-0">
+                                    <div class="card-custom mr-1 background-border-black-blue"> 
                                         {if isModuleAvailable($smarty.const.MODULE_OFFICIER)}
-                                        <a href="game.php?page=officier"><div class="overvieew15 overvire tooltip" style="background: rgba(0, 0, 0, 0.25) url({$dpath}img/title/officier.png) no-repeat center; background-size: 50px;" data_tooltip_content="{$LNG.lm_officiers}"></div></a>
+                                        <a class="tooltip"  data_tooltip_content="{$LNG.lm_officiers}" href="game.php?page=officier"><div class="overvieew15 overvire" style="background: rgba(0, 0, 0, 0.25) url({$dpath}img/title/officier.png) no-repeat center; background-size: 50px;" ></div></a>
                                         {/if}  
                                     </div>
                                 </div>
@@ -239,10 +239,10 @@
                 </div>
                 {if $is_news}
                 <div class="col-12">
-                    <div class="card mt-1 background-border-black-blue shadow"> 
-                        <div class="card-body">
-                            <p class="card-title">{$LNG.ov_news}</p>
-                            <p class="card-text overflow-auto" style="max-height: 50px;">{$news}</p>
+                    <div class="card-custom mt-1 background-border-black-blue shadow"> 
+                        <div class="card-body-custom">
+                            <p class="card-title-custom">{$LNG.ov_news}</p>
+                            <p class="card-text-custom overflow-auto" style="max-height: 50px;">{$news}</p>
                         </div>
                     </div>
                 </div>

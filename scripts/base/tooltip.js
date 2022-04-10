@@ -26,6 +26,7 @@ document.addEventListener('DOMContentLoaded', function () {
             const tip = document.getElementById('tooltip');
             tip.innerHTML = e.target.getAttribute("data_tooltip_content")
             tip.style.display = 'block';
+
             //console.log(tip)
 
         });

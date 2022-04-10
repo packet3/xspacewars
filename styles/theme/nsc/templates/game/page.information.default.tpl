@@ -4,6 +4,7 @@
 <body id="information" class="popup" style="overflow-x: hidden;">
     <div id="body">
         <div id="popup_conteirer">
+        <div id="tooltip-information" class="tip"></div>
             <div id="content">
                 <div id="ally_content" class="conteiner" style="width:auto;">
                     <div class="gray_stripo">

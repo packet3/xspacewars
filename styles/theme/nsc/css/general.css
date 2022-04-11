@@ -513,6 +513,7 @@ p{
 .tooltip_class_table{
 	line-height:13px;
 	border-collapse:collapse;
+  width: 300px;
 }
 .tooltip_class_table td, .tooltip_class_table th{
 	background:rgba(0,0,0,0.3);
@@ -521,6 +522,7 @@ p{
 }
 .tooltip_class_table_text_left{
 	text-align:left;
+  line-height: 1;
 }
 .tooltip_class_table span{
 	color:#CCC;

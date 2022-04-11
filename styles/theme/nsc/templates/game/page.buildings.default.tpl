@@ -21,7 +21,7 @@
                                 <form action="game.php?page=buildings" method="post" class="build_form">
                                     <input type="hidden" name="queuetype" value="1">
                                     <input type="hidden" name="cmd" value="fast">
-                                    <button type="submit" class="build_submit onlist tooltip" data_tooltip_content="{$LNG.cost} {if $need_dm<10}{10}{else}{pretty_number($need_dm)}{/if} {$LNG.tech.921}"  style="float: right; line-height: 43px;">
+                                    <button type="submit" class="build_submit onlist tooltip" data_tooltip_content="{$LNG.cost} {if $need_dm<10}{10}{else}{pretty_number($need_dm)}{/if} {$LNG.tech.921}"  style="top: 27px;line-height: 43px;">
                                         <img src="{$dpath}img/iconav/up.png" alt="" width="16" height="16">
                                     </button>
                                 </form>
@@ -39,7 +39,8 @@
                                 <span class="onlistrenum">{$List@iteration}</span>
                                 <span class="onlistremov ">{$List.level}</span>
                             </div>
-                            <div class="band_process" {if $List@first} id="progressbar" data-time="{$List.resttime}"{/if}></div>
+                        
+                            <div {if $List@first} id="progressbar" data-time="{$List.resttime}"{/if}></div>
                         </div>
                     {/foreach}
                         {if isModuleAvailable($smarty.const.MODULE_STORE)}
@@ -108,7 +109,7 @@
                                     </div>
                                     {/foreach}    
                                 </div>  
-                                <div class="res_global_info">
+                                <div class="res_global_info" style="margin: 5px;">
                                 {foreach $Element.ressources as $res}
                                     {if !empty($Element.{$res + $Element.class_production})}
                                     <div class="res_info info_res_{$res}"><a class="tooltip" data_tooltip_content="
@@ -142,12 +143,12 @@
                                     {/if}
                                 </div>
                                 {if $Element.level > 0 && (($ID == 44 && 0==$HaveMissiles) ||  $ID != 44)}
-                                <div class="break_build tooltip_sticky" data_tooltip_content="
+                                <div class="break_build" data_tooltip_content="
                                     <table class='tooltip_class_table'>
                                         <tbody>
                                             <tr>
                                                 <th colspan='2'>
-                                                    <span style='color:#00FF00'>{$LNG.bd_price_for_destroy}</span><br> {$LNG.tech.{$ID}} {$Element.level}
+                                                    <span style='color:#00FF00'>{$LNG.bd_price_for_destroy}</span> {$LNG.tech.{$ID}} {$Element.level}
                                                 </th>
                                             </tr>
                                             <tr>

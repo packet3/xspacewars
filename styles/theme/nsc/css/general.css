@@ -1431,9 +1431,10 @@ body,input,select,button,textarea,td,th,tr,table{
     margin: auto;
 }
 #ally_content img{
-	max-width:100% !important;
-	max-height:100% !important;
+height: 27px;
 }
+
+
 table.ally_ranks{
 	border-collapse:collapse;
 	background:none;

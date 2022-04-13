@@ -920,9 +920,9 @@ div.fade {display: none;}
 .record_btn{
 	display: block;
     float: left;
-    height: 17px;
+    height: 19px;
     padding: 2px;
-    width: 17px;
+    width: 19px;
     background-position: center;
     background-repeat: no-repeat;
     cursor: pointer;
@@ -937,7 +937,12 @@ div.fade {display: none;}
     background-size: 14px;
 }
 .record_btn:hover{
-	border:1px solid #999999;
+	border:2px solid #999999;
+}
+
+.record_btn_active {
+	border:2px solid #454545 !important;
+	cursor:default;
 }
 
 /*yнастройки и сообщения кнопка*/

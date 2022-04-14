@@ -86,11 +86,11 @@
         <div class="card-custom m-1 background-border-black-blue shadow"> 
             <div class="card-body-custom">
                 {if $FleetInfo.tech == 1 || $FleetInfo.tech == 4}
-                <div class="card-img-left opacity-70" style="background:url({$dpath}img/information/comb.png)" data-bs-toggle="tooltip" data-bs-placement="top" title="{$LNG.tech.115}"></div> 
+                <div class="card-img-left opacity-70" style="background:url({$dpath}img/information/comb.png)" data-bs-toggle="tooltip" data-bs-placement="top" title="{$LNG.tech.115}" style="height: 100%;"></div> 
                 {elseif $FleetInfo.tech == 2 || $FleetInfo.tech == 5}
-                <div class="card-img-left opacity-70" style="background:url({$dpath}img/information/imp.png)" data-bs-toggle="tooltip" data-bs-placement="top" title="{$LNG.tech.117}"></div> 
+                <div class="card-img-left opacity-70" style="background:url({$dpath}img/information/imp.png)" data-bs-toggle="tooltip" data-bs-placement="top" title="{$LNG.tech.117}" style="height: 100%;"></div> 
                 {else}
-                <div class="card-img-left opacity-70" style="background:url({$dpath}img/information/hyper.png)" data-bs-toggle="tooltip" data-bs-placement="top" title="{$LNG.tech.118}"></div> 
+                <div class="card-img-left opacity-70" style="background:url({$dpath}img/information/hyper.png)" data-bs-toggle="tooltip" data-bs-placement="top" title="{$LNG.tech.118}" style="height: 100%;"></div> 
                 {/if} 
                 <p class="card-title-custom text-align-right">{$LNG.in_engine}</p>
                 <p class="card-text-custom text-align-right gradient-gray">{$FleetInfo.speed1|number}</p>
@@ -132,7 +132,7 @@
                     <div class="col g-0">
                         <div class="card-custom background-border-black-blue m-1"> 
                             <span class="card-img-text background-color-blue opacity-70" data-bs-toggle="tooltip" data-bs-placement="top" title="{$LNG.in_number}">{$shoots|number}</span>
-                            <img src="{$dpath}gebaeude/{$rapidfireID}.gif" alt="{$LNG.tech.$rapidfireID}" data-bs-toggle="tooltip" data-bs-placement="top" class="opacity-70" title="{$LNG.tech.$rapidfireID}">
+                            <img src="{$dpath}gebaeude/{$rapidfireID}.gif" alt="{$LNG.tech.$rapidfireID}" data-bs-toggle="tooltip" data-bs-placement="top" class="opacity-70" style="height: 100%;"title="{$LNG.tech.$rapidfireID}">
                         </div>
                     </div>
                 {/foreach}
@@ -151,7 +151,7 @@
                     <div class="col g-0">
                         <div class="card-custom background-border-black-blue m-1"> 
                             <span class="card-img-text background-color-red opacity-70" data-bs-toggle="tooltip" data-bs-placement="top"  title="{$LNG.in_number}">{$shoots|number}</span>
-                            <img src="{$dpath}gebaeude/{$rapidfireID}.gif" alt="{$LNG.tech.$rapidfireID}" class="opacity-70" data-bs-toggle="tooltip" data-bs-placement="top"  title="{$LNG.tech.$rapidfireID}">
+                            <img src="{$dpath}gebaeude/{$rapidfireID}.gif" alt="{$LNG.tech.$rapidfireID}" class="opacity-70" data-bs-toggle="tooltip" data-bs-placement="top"  style="height: 100%;" title="{$LNG.tech.$rapidfireID}">
                         </div>
                     </div>
                 {/foreach}

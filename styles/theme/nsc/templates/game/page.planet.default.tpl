@@ -12,7 +12,7 @@
                     <tbody>
                         <tr>
                             <td>
-                                <img src="{$dpath}img/title/planet.jpg" alt="*">
+                                <img src="{$dpath}img/title/planet.jpg" alt="*" style="object-fit: cover; height: 404px;">
                                 <span class="designation">
                                     <span>{$LNG.lm_planet}</span><br>
                                 </span>

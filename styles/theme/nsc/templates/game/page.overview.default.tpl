@@ -51,7 +51,7 @@
                                 </a>
                             </div>
                             <div class="palnet_block_info palnet_luna_planeto">
-                                <img src="{$dpath}planeten/planet2d/{$planetimage}.png" height="100" width="100">
+                                <img src="{$dpath}planeten/planet2d/{$planetimage}.png" height="100" width="100" style="height: 100%;">
                             </div>
                             <marquee behavior="alternate" direction="left" scrollamount="1" onmouseover="this.stop();" onmouseout="this.start();" style="height: 15px;width: 445px;position: absolute;bottom: 1px;font-size: 10px;left: 6px;color: #b2b2b2;text-shadow: 0px 1px 0px rgba(0,0,0,0.6);">Hello my friends!</marquee>
                             <div class="palnet_block_info palnet_big_info"> 
@@ -101,7 +101,7 @@
                                         <div>
                                             <a href="game.php?page=createMoon"><span class="overvieew5">{$LNG.ov_create_moon}</span></a>
                                             <a href="game.php?page=createMoon" class=" ">
-                                                <img src="{$dpath}img/content/moon.png" class="overvieew4 tooltip" data_tooltip_content="{$LNG.ov_create_moon}" style="opacity:0.8">
+                                                <img src="{$dpath}img/content/moon.png" class="overvieew4 tooltip" data_tooltip_content="{$LNG.ov_create_moon}" style="opacity:0.8; height: 100%;">
                                             </a>
                                         </div>
                                     {/if}
@@ -116,7 +116,7 @@
                                         <div>
                                             <a href="game.php?page=market"><span class="overvieew5">{$LNG.lm_market}</span></a>
                                             <a href="game.php?page=market" class=" ">
-                                                <img src="{$dpath}img/content/market.png" class="overvieew4 tooltip" data_tooltip_content="{$LNG.lm_market}" style="opacity:0.8">
+                                                <img src="{$dpath}img/content/market.png" class="overvieew4 tooltip" data_tooltip_content="{$LNG.lm_market}" style="opacity:0.8; height: 100%;">
                                             </a>
                                         </div>
                                     </div>

@@ -48,7 +48,7 @@
                     </div>
                     <div class="buy_res_content">
                     {foreach $shipIDs as $Element}
-                        <img class="buy_res" onclick="updateVars({$Element})" src="{$dpath}gebaeude/{$Element}.gif" />
+                        <img class="buy_res" onclick="updateVars({$Element})" src="{$dpath}gebaeude/{$Element}.gif" style="height: 100%;"/>
                     {/foreach}
                     </div>
                     <div class="clear"></div>

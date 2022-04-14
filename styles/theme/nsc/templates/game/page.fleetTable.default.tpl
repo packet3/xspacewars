@@ -64,7 +64,7 @@
                 <div class="fleettab1" style="    height: 65px;">
                     <div style="display:none;" class="fleettab12" id="save">
                         <span style="text-align:right; color:#888;font-size: 11px;">{$LNG.fl_new_name_grops}</span>
-                        <input name="save_groop" size="15" maxlength="13" style="width:170px;height: 11px;" autofocus="">
+                        <input name="save_groop" size="15" maxlength="13" style="width:170px;height: 20px;" autofocus="">
                     </div> 
                     <table class="tablesorter ally_ranks">
                         <tbody>

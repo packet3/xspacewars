@@ -1,101 +1,117 @@
 var acstime = 0;
-	
-function updateVars($reset_acs = true)
-{
-	if ($reset_acs) {
-		document.getElementsByName("fleet_group")[0].value = 0;
-	}
-	dataFlyDistance = GetDistance();
-	dataFlyTime = GetDuration();
-	dataFlyConsumption = GetConsumption();
-	dataFlyCargoSpace = storage();
-	refreshFormData();
+
+function updateVars($reset_acs = true) {
+    if ($reset_acs) {
+        document.getElementsByName("fleet_group")[0].value = 0;
+    }
+    dataFlyDistance = GetDistance();
+    dataFlyTime = GetDuration();
+    dataFlyConsumption = GetConsumption();
+    dataFlyCargoSpace = storage();
+    refreshFormData();
 }
 
 function GetDistance() {
-	var thisGalaxy = data.planet.galaxy;
-	var thisSystem = data.planet.system;
-	var thisPlanet = data.planet.planet;
-	var targetGalaxy = document.getElementsByName("galaxy")[0].value;
-	var targetSystem = document.getElementsByName("system")[0].value;
-	var targetPlanet = document.getElementsByName("planet")[0].value;
+    var thisGalaxy = data.planet.galaxy;
+    var thisSystem = data.planet.system;
+    var thisPlanet = data.planet.planet;
+    var targetGalaxy = document.getElementsByName("galaxy")[0].value;
+    var targetSystem = document.getElementsByName("system")[0].value;
+    var targetPlanet = document.getElementsByName("planet")[0].value;
 
-	if (targetGalaxy - thisGalaxy != 0) {
-		return Math.abs(targetGalaxy - thisGalaxy) * 20000;
-	} else if (targetSystem - thisSystem != 0) {
-		return Math.abs(targetSystem - thisSystem) * 5 * 19 + 2700;
-	} else if (targetPlanet - thisPlanet != 0) {
-		return Math.abs(targetPlanet - thisPlanet) * 5 + 1000;
-	} else {
-		return 5;
-	}
+    if (targetGalaxy - thisGalaxy != 0) {
+        return Math.abs(targetGalaxy - thisGalaxy) * 20000;
+    } else if (targetSystem - thisSystem != 0) {
+        return Math.abs(targetSystem - thisSystem) * 5 * 19 + 2700;
+    } else if (targetPlanet - thisPlanet != 0) {
+        return Math.abs(targetPlanet - thisPlanet) * 5 + 1000;
+    } else {
+        return 5;
+    }
 }
 
 function GetDuration() {
-	var sp = document.getElementsByName("speed")[0].value;
-	return Math.max(Math.round((3500 / (sp * 0.1) * Math.pow(dataFlyDistance * 10 / data.maxspeed, 0.5) + 10) / data.gamespeed) * data.fleetspeedfactor, data.fleetMinDuration);
+    var sp = document.getElementsByName("speed")[0].value;
+    return Math.max(Math.round((3500 / (sp * 0.1) * Math.pow(dataFlyDistance * 10 / data.maxspeed, 0.5) + 10) / data.gamespeed) * data.fleetspeedfactor, data.fleetMinDuration);
 }
 
 function GetConsumption() {
-	var dataFlyConsumption = 0;
-	var dataFlyConsumption2 = 0;
-	var basicConsumption = 0;
-	var i;
-	$.each(data.ships, function(shipid, ship){
-		spd = 35000 / Math.max(dataFlyTime * data.gamespeed - 10, 1) * Math.sqrt(dataFlyDistance * 10 / ship.speed);
-		basicConsumption = ship.consumption * ship.amount;
-		dataFlyConsumption2 += basicConsumption * dataFlyDistance / 35000 * (spd / 10 + 1) * (spd / 10 + 1);
-	});
-	return Math.round(dataFlyConsumption + dataFlyConsumption2) + 1;
+    var dataFlyConsumption = 0;
+    var dataFlyConsumption2 = 0;
+    var basicConsumption = 0;
+    var i;
+    $.each(data.ships, function (shipid, ship) {
+        spd = 35000 / Math.max(dataFlyTime * data.gamespeed - 10, 1) * Math.sqrt(dataFlyDistance * 10 / ship.speed);
+        basicConsumption = ship.consumption * ship.amount;
+        dataFlyConsumption2 += basicConsumption * dataFlyDistance / 35000 * (spd / 10 + 1) * (spd / 10 + 1);
+    });
+    return Math.round(dataFlyConsumption + dataFlyConsumption2) + 1;
 }
 
 function storage() {
-	return data.fleetroom - dataFlyConsumption;
+    return data.fleetroom - dataFlyConsumption;
 }
 
 function refreshFormData() {
-	var seconds = dataFlyTime;
-	var hours = Math.floor(seconds / 3600);
-	seconds -= hours * 3600;
-	var minutes = Math.floor(seconds / 60);
-	seconds -= minutes * 60;
-	$("#duration").text(hours + (":" + dezInt(minutes, 2) + ":" + dezInt(seconds,2) + " h"));
-	$("#distance").text(NumberGetHumanReadable(dataFlyDistance));
-	$("#maxspeed").text(NumberGetHumanReadable(data.maxspeed));
-	if (dataFlyCargoSpace >= 0) {
-		$("#consumption").html("<font color=\"lime\">" + NumberGetHumanReadable(dataFlyConsumption) + "</font>");
-		$("#storage").html("<font color=\"lime\">" + NumberGetHumanReadable(dataFlyCargoSpace) + "</font>");
-	} else {
-		$("#consumption").html("<font color=\"red\">" + NumberGetHumanReadable(dataFlyConsumption) + "</font>");
-		$("#storage").html("<font color=\"red\">" + NumberGetHumanReadable(dataFlyCargoSpace) + "</font>");
-	}
+    var seconds = dataFlyTime;
+    var hours = Math.floor(seconds / 3600);
+    seconds -= hours * 3600;
+    var minutes = Math.floor(seconds / 60);
+    seconds -= minutes * 60;
+
+    let duration = hours + (":" + dezInt(minutes, 2) + ":" + dezInt(seconds, 2) + " h")
+    let distance = NumberGetHumanReadable(dataFlyDistance)
+    let maxSpeed = NumberGetHumanReadable(data.maxspeed)
+    document.getElementById('duration').textContent = duration
+    document.getElementById('distance').textContent = distance
+    document.getElementById('maxspeed').textContent = maxSpeed
+    // $("#duration").text(hours + (":" + dezInt(minutes, 2) + ":" + dezInt(seconds,2) + " h"));
+    // $("#distance").text(NumberGetHumanReadable(dataFlyDistance));
+    // $("#maxspeed").text(NumberGetHumanReadable(data.maxspeed));
+    if (dataFlyCargoSpace >= 0) {
+        document.getElementById('consumption').innerHTML = "<font color=\"lime\">" + NumberGetHumanReadable(dataFlyConsumption) + "</font>"
+        document.getElementById('storage').innerHTML = "<font color=\"lime\">" + NumberGetHumanReadable(dataFlyCargoSpace) + "</font>"
+        // $("#consumption").html("<font color=\"lime\">" + NumberGetHumanReadable(dataFlyConsumption) + "</font>");
+        // $("#storage").html("<font color=\"lime\">" + NumberGetHumanReadable(dataFlyCargoSpace) + "</font>");
+    } else {
+        document.getElementById('consumption').innerHTML = "<font color=\"red\">" + NumberGetHumanReadable(dataFlyConsumption) + "</font>"
+        document.getElementById('storage').innerHTML = "<font color=\"red\">" + NumberGetHumanReadable(dataFlyCargoSpace) + "</font>"
+        // $("#consumption").html("<font color=\"red\">" + NumberGetHumanReadable(dataFlyConsumption) + "</font>");
+        // $("#storage").html("<font color=\"red\">" + NumberGetHumanReadable(dataFlyCargoSpace) + "</font>");
+    }
 }
 
 function setACSTarget(galaxy, solarsystem, planet, type, tacs) {
-	setTarget(galaxy, solarsystem, planet, type);
-	updateVars();
-	document.getElementsByName("fleet_group")[0].value = tacs;
+    setTarget(galaxy, solarsystem, planet, type);
+    updateVars();
+    document.getElementsByName("fleet_group")[0].value = tacs;
 }
 
 function setTarget(galaxy, solarsystem, planet, type) {
-	document.getElementsByName("galaxy")[0].value = galaxy;
-	document.getElementsByName("system")[0].value = solarsystem;
-	document.getElementsByName("planet")[0].value = planet;
-	document.getElementsByName("type")[0].value = type;
+    document.getElementsByName("galaxy")[0].value = galaxy;
+    document.getElementsByName("system")[0].value = solarsystem;
+    document.getElementsByName("planet")[0].value = planet;
+    document.getElementsByName("type")[0].value = type;
 }
 
-function FleetTime(){ 
-	var sekunden = serverTime.getSeconds();
-	var starttime = dataFlyTime;
-	var endtime	= starttime + dataFlyTime;
-	$("#arrival").html(getFormatedDate(serverTime.getTime()+1000*starttime, tdformat));
-	$("#return").html(getFormatedDate(serverTime.getTime()+1000*endtime, tdformat));
+function FleetTime() {
+    var sekunden = serverTime.getSeconds();
+    var starttime = dataFlyTime;
+    var endtime = starttime + dataFlyTime;
+
+    let arrival = getFormatedDate(serverTime.getTime() + 1000 * starttime, tdformat)
+    let returnvar = getFormatedDate(serverTime.getTime() + 1000 * endtime, tdformat)
+
+    document.getElementById('arrival').innerHTML = arrival
+    document.getElementById('return').innerHTML = returnvar
+    // $("#arrival").html(getFormatedDate(serverTime.getTime() + 1000 * starttime, tdformat));
+    // $("#return").html(getFormatedDate(serverTime.getTime() + 1000 * endtime, tdformat));
 }
 
 function setResource(id, val) {
-	if (document.getElementsByName(id)[0]) {
-		document.getElementsByName("resource" + id)[0].value = val;
-	}
+    if (document.getElementsByName(id)[0]) {
+        document.getElementsByName("resource" + id)[0].value = val;
+    }
 }
 
 function maxResource(id) {
@@ -250,7 +266,9 @@ function GroopShips(idGroop) {
 }
 
 function onSave() {
-    $('#save').show();
+    let save = document.getElementById('save')
+    save.style.display = 'block'
+    //$('#save').show();
 }
 
 function noShip(id) {
@@ -313,44 +331,86 @@ function setNumber(name, number) {
     }
 }
 
-function CheckTarget()
-{
-	kolo	= (typeof data.ships[208] == "object") ? 1 : 0;
-		
-	$.getJSON('game.php?page=fleetStep1&mode=checkTarget&galaxy='+document.getElementsByName("galaxy")[0].value+'&system='+document.getElementsByName("system")[0].value+'&planet='+document.getElementsByName("planet")[0].value+'&planet_type='+document.getElementsByName("type")[0].value+'&lang='+Lang+'&kolo='+kolo, function(data) {
-		if(data == "OK") {
-			document.getElementById('form').submit();
-		} else {
-			NotifyBox(data);
-		}
-	});
-	return false;
+function CheckTarget() {
+    kolo = (typeof data.ships[208] == "object") ? 1 : 0;
+    fetch('game.php?page=fleetStep1&mode=checkTarget&galaxy=' + document.getElementsByName("galaxy")[0].value + '&system=' + document.getElementsByName("system")[0].value + '&planet=' + document.getElementsByName("planet")[0].value + '&planet_type=' + document.getElementsByName("type")[0].value + '&lang=' + Lang + '&kolo=' + kolo)
+        .then(response => response.json())
+        .then(data => {
+            if (data == "OK") {
+                document.getElementById('form').submit();
+            } else {
+                NotifyBox(data);
+            }
+        })
+        .catch(error => {
+            // handle the error
+        });
+    // $.getJSON('game.php?page=fleetStep1&mode=checkTarget&galaxy=' + document.getElementsByName("galaxy")[0].value + '&system=' + document.getElementsByName("system")[0].value + '&planet=' + document.getElementsByName("planet")[0].value + '&planet_type=' + document.getElementsByName("type")[0].value + '&lang=' + Lang + '&kolo=' + kolo, function (data) {
+    //     if (data == "OK") {
+    //         document.getElementById('form').submit();
+    //     } else {
+    //         NotifyBox(data);
+    //     }
+    // });
+    return false;
 }
 
+
 function EditShortcuts(autoadd) {
-    $(".shortcut-link").hide();
-    $(".shortcut-edit:not(.shortcut-new)").show();
-    if ($('.shortcut-isset').length === 0)
+    let shortcutLink = document.querySelectorAll('.shortcut-link')
+
+    for (let i = 0; i < shortcutLink.length; i++) {
+        shortcutLink[i].style.display = 'none'
+    }
+
+    let shortcutEdit = document.querySelectorAll('.shortcut-edit:not(.shortcut-new)')
+    for (let i = 0; i < shortcutEdit.length; i++) {
+        shortcutEdit[i].style.display = 'block'
+    }
+
+    let shortcutIsset = document.querySelectorAll('.shortcut-isset')
+    if (shortcutIsset.length === 0) {
         AddShortcuts();
+    }
+
+    // $(".shortcut-link").hide();
+    // $(".shortcut-edit:not(.shortcut-new)").show();
+    // if ($('.shortcut-isset').length === 0)
+    //     AddShortcuts();
 }
 
 function AddShortcuts() {
-    var HTML = $('.shortcut-new').clone().children();
-    HTML.find('input, select').attr('name', function(i, old) {
-        return old.replace("shortcut[]", "shortcut[" + ($('.shortcut-link').length) + "-new]");
-    });
-    HTML.addClass('shortcut-isset');
-    $('#shortcut-data').append(HTML);
+    let shortcutNew = document.querySelectorAll('.shortcut-new')
+    let clone = shortcutNew[0].cloneNode(true)
+    let child = clone.childNodes
+    let children = child[1].querySelectorAll("[name]")
+
+    for (let i = 0; i < children.length; i++) {
+        let elm = children[i].getAttribute("name")
+        children[i].setAttribute("name", elm.replace("shortcut[]", "shortcut[" + (document.querySelectorAll('.shortcut-link').length) + "-new]"))
+    }
+
+
+    child[1].classList.add('shortcut-isset')
+    document.getElementById('shortcut-data').append(child[1])
+
+    // var HTML = $('.shortcut-new').clone().children();
+    // console.log(HTML)
+    // HTML.find('input, select').attr('name', function (i, old) {
+    //     return old.replace("shortcut[]", "shortcut[" + ($('.shortcut-link').length) + "-new]");
+    // });
+    // HTML.addClass('shortcut-isset');
+    // $('#shortcut-data').append(HTML);
 }
 
 function SaveShortcuts(reedit) {
-    $.getJSON('game.php?page=fleetStep1&mode=saveShortcuts&ajax=1&' + $('.shortcut-row').find("input, select").serialize(), function(res) {
+    $.getJSON('game.php?page=fleetStep1&mode=saveShortcuts&ajax=1&' + $('.shortcut-row').find("input, select").serialize(), function (res) {
         $(".shortcut-link").show();
         $(".shortcut-edit").hide();
-        var deadElements = $(".shortcut-isset").filter(function() {
+        var deadElements = $(".shortcut-isset").filter(function () {
             return $('input[name*=name]', this).val() == "" || $('input[name*=galaxy]', this).val() == "" || $('input[name*=galaxy]', this).val() == 0 || $('input[name*=system]', this).val() == "" || $('input[name*=system]', this).val() == 0 || $('input[name*=planet]', this).val() == "" || $('input[name*=planet]', this).val() == 0;
         });
-        $(".shortcut-isset > .shortcut-link").html(function() {
+        $(".shortcut-isset > .shortcut-link").html(function () {
             if ($(this).nextAll().find('input[name*=name]').val() === "") {
                 $(this).parent().remove();
                 return false;
@@ -369,42 +429,43 @@ function SaveShortcuts(reedit) {
     });
 }
 
-$(function() {
-	$('.shortcut-delete').on('click', function() {
-		$(this).prev().val('');
-		$(this).parent().find('input');
-		SaveShortcuts(true);
-	});
+$(document).ready(function () {
+    $('.shortcut-delete').on('click', function () {
+        $(this).prev().val('');
+        $(this).parent().find('input');
+        SaveShortcuts(true);
+    });
 });
 
-$(function() {
-	$('.countdots').keyup(function() {
-		countDots();
-		colorSet();
-		fleetPoints();
-	});
-	$('form').submit(function() {
-		DotsToCount();
-	});
+$(document).ready(function () {
+    $('.countdots').keyup(function () {
+        countDots();
+        colorSet();
+        fleetPoints();
+    });
+    $('form').submit(function () {
+        DotsToCount();
+    });
 });
-jQuery(document).ready(function(){
-	countDots();
-	fleetPoints();
+jQuery(document).ready(function () {
+    countDots();
+    //below maynot be used??
+    fleetPoints();
 });
 function DotsToCount() {
-    $('.countdots').val(function(i, old) {
+    $('.countdots').val(function (i, old) {
         return old.replace(/[^[0-9]|\.]/g, '');
     });
 }
 
 function countDots() {
-    $('.countdots').val(function(i, old) {
+    $('.countdots').val(function (i, old) {
         return NumberGetHumanReadable(old.replace(/[^[0-9]|\.]/g, ''));
     });
 }
 
 function colorSet() {
-    $('.countdots').each(function() {
+    $('.countdots').each(function () {
         el_value = $(this).val().replace(/[^[0-9]|\.]/g, '');
         el_name = $(this).attr('name');
         el_amount = document.getElementById(el_name + '_value').innerHTML.replace(/[^[0-9]|\.]/g, '');
@@ -428,8 +489,8 @@ function colorSet() {
 
 function fleetPoints() {
     var pointsCost = 0;
-    $('.countdots').each(function() {
-		var $this = $(this);
+    $('.countdots').each(function () {
+        var $this = $(this);
         var el_count = parseInt($this.val().replace(/\./g, ''));
         var el_name = $this.attr('name');
         pointsCost += pointsPrice[el_name] * el_count;

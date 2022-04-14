@@ -305,7 +305,7 @@ function NotifyBox(text) {
 	window.setTimeout(function () {
 		tip.classList.remove('notify');
 		tip.style.display = 'none'
-	}, 500)
+	}, 5000)
 
 
 	// tip.html(text).addClass('notify').css({
@@ -317,7 +317,12 @@ function NotifyBox(text) {
 
 function TimeView() {
 	let gametime = document.getElementsByClassName('servertime');
-	gametime[0].innerHTML = getFormatedDate(serverTime.getTime(), tdformat)
+	try {
+		gametime[0].innerHTML = getFormatedDate(serverTime.getTime(), tdformat)
+	} catch (err) {
+		//silent fail
+	}
+
 
 }
 

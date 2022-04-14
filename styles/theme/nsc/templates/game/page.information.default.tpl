@@ -13,7 +13,7 @@
                     <div class="info_elements">
                         <div class="content_box ">
                             <div class="image">
-                                <img src="{$dpath}gebaeude/{$elementID}.gif" alt="">
+                                <img src="{$dpath}gebaeude/{$elementID}.gif" alt="" style="height: 100%;">
                             </div>
                             <div class="prices info_description">
                                 <p class="info15">{$LNG.longDescription.$elementID}

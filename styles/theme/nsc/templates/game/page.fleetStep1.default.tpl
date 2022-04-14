@@ -100,7 +100,7 @@
                   </div>
                </div>
             </div>
-            <div class="fleet_my_planet_kord shortcut-edit" style="line-height: 15px; height: 13px; text-align: right; width: 15px; font-size: 30px; font-family: BicubikRegular, Arial, Geneva, sans-serif; text-shadow: rgba(0, 0, 0, 0.55) 1px 2px; color: rgb(9, 29, 46); cursor: pointer; display: none;" onclick="AddShortcuts();return false">        	
+            <div class="fleet_my_planet_kord shortcut-edit" style="line-height: 15px; height: 25px; text-align: right; width: 25px; font-size: 30px; font-family: BicubikRegular, Arial, Geneva, sans-serif; text-shadow: rgba(0, 0, 0, 0.55) 1px 2px; color: rgb(9, 29, 46); cursor: pointer; display: none;" onclick="AddShortcuts();return false">        	
                 <span>+</span>            
             </div>
 	    

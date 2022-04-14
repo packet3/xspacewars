@@ -1,27 +1,61 @@
-function msgArchive(MessID, MessType)
-{
-	Message.MessID	= MessType;
+/**
+ *   orginal code based on New Star game, 
+ *   re-wrote code to not use Jquery - Joe
+ *
+ *  XSpace (xspacewars.com)
+ * For the full copyright and license information, please view the LICENSE
+ *
+ * @package XSpace
+ * @author joe <joe@xspacewars.com>
+ * @copyright 2022 Joe
+ * @licence MIT
+ * @version 1.0.0
+ * @link https://github.com/packet3/xspacewars
+ */
+
+function msgArchive(MessID, MessType) {
+	Message.MessID = MessType;
 	Message.MessageCount(MessType);
 
-	$('#loading').show();
+	const loading = document.getElementById('loading')
+	loading.style.display = "block"
 
-	$.get('game.php?page=messages&mode=inarchive&MsgID='+MessID+'&ajax=1', function(data) {
-		$('#loading').hide();
-		NotifyBox('Message achieved!');
-	});
+	//$('#loading').show();
+
+	fetch('game.php?page=messages&mode=inarchive&MsgID=' + MessID + '&ajax=1')
+		.then(data => {
+			NotifyBox('Message achieved!');
+		}).catch(error => {
+			NotifyBox('An Error occurred fetching messages');
+		})
+	// $.get('game.php?page=messages&mode=inarchive&MsgID=' + MessID + '&ajax=1', function (data) {
+	// 	$('#loading').hide();
+	// 	NotifyBox('Message achieved!');
+	// });
 }
 
-function msgDel(MessID, MessType)
-{
-	Message.MessID	= MessType;
+function msgDel(MessID, MessType) {
+	Message.MessID = MessType;
 	Message.MessageCount(MessType);
 
-	$('#loading').show();
+	const loading = document.getElementById('loading')
+	loading.style.display = "block"
 
-	$.get('game.php?page=messages&mode=delonemsg&MsgID='+MessID+'&ajax=1', function(data) {
-		$('#loading').hide();
-		NotifyBox('Message has been successfully removed!');
-	});
+	// $('#loading').show();
+
+	fetch('game.php?page=messages&mode=delonemsg&MsgID=' + MessID + '&ajax=1')
+		.then(data => {
+			loading.style.display = "none"
+			NotifyBox('Message has been successfully removed!');
+
+		}).catch(error => {
+			NotifyBox('Error deleting message!');
+		})
+
+	// $.get('game.php?page=messages&mode=delonemsg&MsgID=' + MessID + '&ajax=1', function (data) {
+	// 	$('#loading').hide();
+	// 	NotifyBox('Message has been successfully removed!');
+	// });
 }
 
 
@@ -29,71 +63,70 @@ function msgDel(MessID, MessType)
 
 
 
-function number_format (number, decimals) {
-    number = (number + '').replace(/[^0-9+\-Ee.]/g, '');
-    var n = !isFinite(+number) ? 0 : +number,
-        prec = !isFinite(+decimals) ? 0 : Math.abs(decimals),
-        sep = '.',
-        dec = ',',
-        s = '',
-        toFixedFix = function (n, prec) {
-            var k = Math.pow(10, prec);
-            return '' + Math.round(n * k) / k;
-        };
-    // Fix for IE parseFloat(0.55).toFixed(0) = 0;
-    s = (prec ? toFixedFix(n, prec) : '' + Math.round(n)).split('.');
-    if (s[0].length > 3) {        s[0] = s[0].replace(/\B(?=(?:\d{3})+(?!\d))/g, sep);
-    }
-    if ((s[1] || '').length < prec) {
-        s[1] = s[1] || '';
-        s[1] += new Array(prec - s[1].length + 1).join('0');    }
-    return s.join(dec);
+function number_format(number, decimals) {
+	number = (number + '').replace(/[^0-9+\-Ee.]/g, '');
+	var n = !isFinite(+number) ? 0 : +number,
+		prec = !isFinite(+decimals) ? 0 : Math.abs(decimals),
+		sep = '.',
+		dec = ',',
+		s = '',
+		toFixedFix = function (n, prec) {
+			var k = Math.pow(10, prec);
+			return '' + Math.round(n * k) / k;
+		};
+	// Fix for IE parseFloat(0.55).toFixed(0) = 0;
+	s = (prec ? toFixedFix(n, prec) : '' + Math.round(n)).split('.');
+	if (s[0].length > 3) {
+		s[0] = s[0].replace(/\B(?=(?:\d{3})+(?!\d))/g, sep);
+	}
+	if ((s[1] || '').length < prec) {
+		s[1] = s[1] || '';
+		s[1] += new Array(prec - s[1].length + 1).join('0');
+	}
+	return s.join(dec);
 }
 
 function NumberGetHumanReadable(value, dec) {
-	if(typeof dec === "undefined") {
+	if (typeof dec === "undefined") {
 		dec = 0;
 	}
-	if(dec == 0)
-	{
-		value	= removeE(Math.floor(value));
+	if (dec == 0) {
+		value = removeE(Math.floor(value));
 	}
 	return number_format(value, dec);
 }
 
-function shortly_number(number)
-{
-    var unit	= ["", "K", "M", "B", "T", "Q", "Q+", "S", "S+", "O", "N"];
-	var negate	= number < 0 ? -1 : 1;
-	var key		= 0;
-	number		= Math.abs(number);
-	
-	if(number >= 1000000) {
+function shortly_number(number) {
+	var unit = ["", "K", "M", "B", "T", "Q", "Q+", "S", "S+", "O", "N"];
+	var negate = number < 0 ? -1 : 1;
+	var key = 0;
+	number = Math.abs(number);
+
+	if (number >= 1000000) {
 		++key;
-		while(number >= 1000000)
-		{
+		while (number >= 1000000) {
 			++key;
 			number = number / 1000000;
 		}
-	} else if(number >= 1000) {
+	} else if (number >= 1000) {
 		++key;
 		number = number / 1000;
 	}
-	
-	decial	= key != 0 && number != 0 && number < 100;
-	return NumberGetHumanReadable(negate * number, decial)+(key !== 0 ? '&nbsp;'+unit[key] : '');
+
+	decial = key != 0 && number != 0 && number < 100;
+	return NumberGetHumanReadable(negate * number, decial) + (key !== 0 ? '&nbsp;' + unit[key] : '');
 }
 
 function removeE(Number) {
 	Number = String(Number);
-	if (Number.search(/e\+/) == -1) 
+	if (Number.search(/e\+/) == -1)
 		return Number;
 	var e = parseInt(Number.replace(/\S+.?e\+/g, ''));
-	if (isNaN(e) || e == 0) 
+	if (isNaN(e) || e == 0)
 		return Number;
-	else if ($.browser.webkit || $.browser.msie) 
+	else if ($.browser.webkit || $.browser.msie)
 		return parseFloat(Number).toPrecision(Math.min(e + 1, 21));
-	else 
+	else
 		return parseFloat(Number).toPrecision(e + 1);
 }
 
@@ -116,8 +149,8 @@ function getFormatedDate(timestamp, format) {
 }
 function dezInt(num, size, prefix) {
 	prefix = (prefix) ? prefix : "0";
-	var minus = (num < 0) ? "-" : "", 
-	result = (prefix == "0") ? minus : "";
+	var minus = (num < 0) ? "-" : "",
+		result = (prefix == "0") ? minus : "";
 	num = Math.abs(parseInt(num, 10));
 	size -= ("" + num).length;
 	for (var i = 1; i <= size; i++) {
@@ -152,166 +185,160 @@ function GetRestTimeFormat(Secs) {
 }
 
 function OpenPopup(target_url, win_name, width, height) {
-	var new_win = window.open(target_url+'&ajax=1', win_name, 'scrollbars=yes,statusbar=no,toolbar=no,location=no,directories=no,resizable=no,menubar=no,width='+width+',height='+height+',screenX='+((screen.width-width) / 2)+",screenY="+((screen.height-height) / 2)+",top="+((screen.height-height) / 2)+",left="+((screen.width-width) / 2));
+	var new_win = window.open(target_url + '&ajax=1', win_name, 'scrollbars=yes,statusbar=no,toolbar=no,location=no,directories=no,resizable=no,menubar=no,width=' + width + ',height=' + height + ',screenX=' + ((screen.width - width) / 2) + ",screenY=" + ((screen.height - height) / 2) + ",top=" + ((screen.height - height) / 2) + ",left=" + ((screen.width - width) / 2));
 	new_win.focus();
 }
 
-function DestroyMissiles() {
-	$.getJSON('?page=information&mode=destroyMissiles&'+$('.missile').serialize(), function(data) {
-		$('#missile_502').text(NumberGetHumanReadable(data[0]));
-		$('#missile_503').text(NumberGetHumanReadable(data[1]));
-		$('.missile').val('');
-	});
-}
+//Is this even used ??
+// function DestroyMissiles() {
+// 	const missile = document.getElementsByClassName('missile');
 
-function handleErr(errMessage, url, line) 
-{ 
+// 	for (var i = 0; i < missile.length; i++) {
+// 		fetch('?page=information&mode=destroyMissiles&' + missile[i])
+// 			.then(data => {
+
+// 			})
+// 	}
+// 	$.getJSON('?page=information&mode=destroyMissiles&' + $('.missile').serialize(), function (data) {
+// 		$('#missile_502').text(NumberGetHumanReadable(data[0]));
+// 		$('#missile_503').text(NumberGetHumanReadable(data[1]));
+// 		$('.missile').val('');
+// 	});
+// }
+
+function handleErr(errMessage, url, line) {
 	error = "There is an error at this page.\n";
-	error += "Error: " + errMessage+ "\n";
+	error += "Error: " + errMessage + "\n";
 	error += "URL: " + url + "\n";
 	error += "Line: " + line + "\n\n";
 	error += "Click OK to continue viewing this page,\n";
 	alert(error);
-	if(typeof console == "object")
+	if (typeof console == "object")
 		console.log(error);
- 
-	return true; 
+
+	return true;
 }
 
-var Dialog	= {	
-	info: function(ID){
-		return Dialog.open('game.php?page=information&id='+ID, 590, (ID > 600 && ID < 800) ? 210 : ((ID > 100 && ID < 200) ? 300 : 620));
+var Dialog = {
+	info: function (ID) {
+		return Dialog.open('game.php?page=information&id=' + ID, 590, (ID > 600 && ID < 800) ? 210 : ((ID > 100 && ID < 200) ? 300 : 620));
 	},
-	
-	alert: function(msg, callback){
+
+	alert: function (msg, callback) {
 		alert(msg);
-		if(typeof callback === "function") {
+		if (typeof callback === "function") {
 			callback();
 		}
 	},
-	
-	PM: function(ID, Subject, Message) {
-		if(typeof Subject !== 'string')
-			Subject	= '';
 
-		return Dialog.open('game.php?page=messages&mode=write&id='+ID+'&subject='+encodeURIComponent(Subject)+'&message='+encodeURIComponent(Subject), 665, 360);
+	PM: function (ID, Subject, Message) {
+		if (typeof Subject !== 'string')
+			Subject = '';
+
+		return Dialog.open('game.php?page=messages&mode=write&id=' + ID + '&subject=' + encodeURIComponent(Subject) + '&message=' + encodeURIComponent(Subject), 665, 360);
 	},
-	
-	Playercard: function(ID) {
-		return isPlayerCardActive && Dialog.open('game.php?page=playerCard&id='+ID, 650, 600);
+
+	Playercard: function (ID) {
+		return isPlayerCardActive && Dialog.open('game.php?page=playerCard&id=' + ID, 650, 600);
 	},
-	
-	Buddy: function(ID) {
-		return Dialog.open('game.php?page=buddyList&mode=request&id='+ID, 650, 300);
+
+	Buddy: function (ID) {
+		return Dialog.open('game.php?page=buddyList&mode=request&id=' + ID, 650, 300);
 	},
-	
-	PlanetAction: function() {
+
+	PlanetAction: function () {
 		return Dialog.open('game.php?page=overview&mode=actions', 400, 180);
 	},
-	
-	AllianceChat: function() {
-	    return OpenPopup('game.php?page=chat&action=alliance', "alliance_chat", 960, 900);
+
+	AllianceChat: function () {
+		return OpenPopup('game.php?page=chat&action=alliance', "alliance_chat", 960, 900);
 	},
-    
-    Galaxy: function() {
-	    return Dialog.open('game.php?page=galaxy', 960, 900);
+
+	Galaxy: function () {
+		return Dialog.open('game.php?page=galaxy', 960, 900);
 	},
-    
+
 	open: function (url, width, height) {
-        $.fancybox.open({
-            type: 'iframe',
-            opts : {
-                iframe : {
-                    css : {
-                        width  : width,
-                        /*height : height,*/
-                        /* 
-                        minWidth: width,
-                        minHeight: height,
-                        maxWidth: 9999,
-                        maxHeight: 9999,
-                        */
-                    }
-                },
-            },
-            src: url,
-            transitionDuration: 0,
-            animationDuration: 0,
-        });
+		function makeHttpObject() {
+			if ("XMLHttpRequest" in window) return new XMLHttpRequest();
+			else if ("ActiveXObject" in window) return new ActiveXObject("Msxml2.XMLHTTP");
+		}
 
-        return false;
-    },
-    
-}
+		var request = makeHttpObject();
+		request.open("GET", url, true);
+		request.send(null);
+		request.onreadystatechange = function () {
+			if (request.readyState == 4) {
+				Swal.fire({
+					html: request.responseText,
+					width: '65%',
+					showCloseButton: false,
+					showConfirmButton: false,
+					padding: 0,
+					backdrop: true,
+					background: 'rgba(0, 0, 0, .0)'
 
-function NotifyBox(text) {
-	tip = $('#tooltip')
-	tip.html(text).addClass('notify').css({
-		left : (($(window).width() - $('#leftmenu').width()) / 2 - tip.outerWidth() / 2) + $('#leftmenu').width(),
-	}).show();
-	window.setTimeout(function(){tip.fadeOut(1000, function() {tip.removeClass('notify')})}, 500);
-}
-
-
-function UhrzeitAnzeigen() {
-   $(".servertime").text(getFormatedDate(serverTime.getTime(), tdformat));
-}
-
-
-$.widget("custom.catcomplete", $.ui.autocomplete, {
-	_renderMenu: function( ul, items ) {
-		var self = this,
-			currentCategory = "";
-		$.each( items, function( index, item ) {
-			if ( item.category != currentCategory ) {
-				ul.append( "<li class='ui-autocomplete-category'>" + item.category + "</li>" );
-				currentCategory = item.category;
+				})
 			}
-			self._renderItem( ul, item );
-		});
-	}
-});
 
-$(function() {
-	$('#drop-admin').on('click', function() {
-		$.get('admin.php?page=logout', function() {
-			$('.globalWarning').animate({
-				'height' :0,
-				'padding' :0,
-				'opacity' :0
-			}, function() {
-				$(this).hide();
-			});
-		});
-	});
-	
-	
-	window.setInterval(function() {
-		$('.countdown').each(function() {
-			var s		= $(this).data('time') - (serverTime.getTime() - startTime) / 1000;
-			if(s <= 0) {
-				$(this).text('-');
-			} else {
-				$(this).text(GetRestTimeFormat(s));
-			}
-		});
-	}, 1000);
-	
-	$('#planetSelector').on('change', function() {
-		document.location = '?'+queryString+'&cp='+$(this).val();
-	});
+		};
 
-	UhrzeitAnzeigen();
-	setInterval(UhrzeitAnzeigen, 1000);
-	
-	$("button#create_new_alliance_rank").click(function() {
-		$("div#new_alliance_rank").dialog(		{
-			draggable: false,
-			resizable: false,
-			modal: true,
-			width: 760
-		});
+
 
 		return false;
-	});
-});
+	},
+
+}
+//https://tobiasahlin.com/blog/move-from-jquery-to-vanilla-javascript/#network-requests-with-get-or-ajax
+function NotifyBox(text) {
+
+	const tip = document.getElementById('tooltip') //$('#tooltip')
+	const windowWidth = window.innerWidth
+	const leftMenu = document.getElementById('left_menu');
+
+
+	tip.innerHTML = text
+	tip.classList.add('notify');
+	tip.style.left = ((windowWidth - leftMenu.clientWidth) / 2 - tip.outerWidth / 2) + leftMenu.clientWidth
+	tip.style.display = 'block'
+
+	window.setTimeout(function () {
+		tip.classList.remove('notify');
+		tip.style.display = 'none'
+	}, 500)
+
+
+	// tip.html(text).addClass('notify').css({
+	// 	left: (($(window).width() - $('#leftmenu').width()) / 2 - tip.outerWidth() / 2) + $('#leftmenu').width(),
+	// }).show();
+	// window.setTimeout(function () { tip.fadeOut(1000, function () { tip.removeClass('notify') }) }, 500);
+}
+
+
+function TimeView() {
+	let gametime = document.getElementsByClassName('servertime');
+	gametime[0].innerHTML = getFormatedDate(serverTime.getTime(), tdformat)
+
+}
+
+// do we still need this one?
+// $.widget("custom.catcomplete", $.ui.autocomplete, {
+// 	_renderMenu: function (ul, items) {
+// 		var self = this,
+// 			currentCategory = "";
+// 		$.each(items, function (index, item) {
+// 			if (item.category != currentCategory) {
+// 				ul.append("<li class='ui-autocomplete-category'>" + item.category + "</li>");
+// 				currentCategory = item.category;
+// 			}
+// 			self._renderItem(ul, item);
+// 		});
+// 	}
+// });
+
+document.addEventListener('DOMContentLoaded', function () {
+
+	TimeView();
+
+	setInterval(TimeView, 1000);
+})

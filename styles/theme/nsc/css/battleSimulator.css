@@ -58,8 +58,9 @@
     margin-bottom: 3px;
     margin-right: 3px;}	
 	    
-.rexx17{    float: right;
-    height: 9px;
+.rexx17{
+    float: right;
+    height: 13px;
     margin-top: 1px;
     width: 76px;
     margin-left: 3px;
@@ -75,8 +76,9 @@
  background-repeat: no-repeat;
     background-size: contain;
 	background-color:#00060d;}
-.rexx18{    float: right;
-    height: 9px;
+.rexx18{
+    float: right;
+    height: 13px;
     margin-top: 1px;
     width: 76px;
     margin-left: 3px;
@@ -137,16 +139,19 @@ span.rexx20 {}
     background: rgba(0, 0, 0, 0.25);
     box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.25), 0 1px rgba(255, 255, 255, 0.04);
     }
-.rexx24{    background-size: contain;
+.rexx24{
+    background-size: contain;
     background-position: center right;
     background-repeat: no-repeat;
     width: 150px;
-    height: 12px;
+    height: 17px;
     margin-left: 7px;}
-.rexx25{height: 28px;
+
+.rexx25{
+    height: 28px;
     line-height: 28px;
     font-weight: bold;
-    margin: 1px;
+    margin: 8px;
     padding: 0;
     font-size: 20px;
     padding-left: 5px;
@@ -187,7 +192,7 @@ span.rexx20 {}
 	margin: 0 2px 0 0 ;
 }
 .battlesim_ress{
-	    border-bottom: 1px solid rgba(0,0,0,0.3);
+	border-bottom: 1px solid rgba(0,0,0,0.3);
     border-top: 1px solid rgba(0,0,0,0.3);
     border: 1px solid #000;
     background: rgba(0, 0, 0, 0.25);
@@ -195,7 +200,8 @@ span.rexx20 {}
     margin: 5px;
     padding: 5px;
 }
-.battlesim_ress span{    width: 160px;
+.battlesim_ress span{
+    width: 160px;
     color: #ccc;
     text-align: left;
     position: relative;

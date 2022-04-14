@@ -163,6 +163,7 @@
                </div>
             </div>
          </td>
+       
          {foreach $planetList.image as $planetID => $image}
          <td class="imper_f 
             imper_{if $planetList.coords.$planetID.planet_type == 1}planet{else}moon{/if}
@@ -208,6 +209,7 @@
             </div>
             <div class="clear"></div>
          </td>
+         
          {/foreach}
       </tr>
    </table>

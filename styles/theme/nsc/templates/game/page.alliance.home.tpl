@@ -15,7 +15,7 @@
             {/if} 
 		</div>  
         <div class="row" style="padding: 7px">
-            <div class="col-md-12">
+            <div class="col-md-12 g-0">
             <div class="card background-border-black-blue shadow"> 
                 <div class="ally_img" {if $ally_image}style="background-image:url({$ally_image})"{/if}>
                     <div class="designation">
@@ -38,7 +38,7 @@
                 </div>              
             </div>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-3 g-0">
                 <div class="card mt-1 background-border-black-blue shadow"> 
                     <div class="card-body">
                         {if $rights.ROUNDMAIL}
@@ -51,7 +51,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-3 g-0">
                 <div class="card mt-1 background-border-black-blue shadow"> 
                     <div class="card-body">
                         <a href="game.php?page=alliance&mode=development">
@@ -60,7 +60,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-3 g-0">
                 <div class="card mt-1 background-border-black-blue shadow"> 
                     <div class="card-body">
                         <a href="game.php?page=alliance&mode=storage">
@@ -69,7 +69,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-3 g-0">
                 <div class="card mt-1 background-border-black-blue shadow"> 
                     <div class="card-body">
                         {if $rights.DIPLOMATIC}
@@ -82,7 +82,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-12">
+            <div class="col-md-12 g-0">
                 <div class="card mt-1 background-border-black-blue shadow"> 
                     <div class="card-body">
                         <p class="card-title text-align-center">{$LNG.al_inside_section}</p>
@@ -90,7 +90,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-12">
+            <div class="col-md-12 g-0">
                 <div class="card mt-1 background-border-black-blue shadow"> 
                     <div class="card-body">
                         <p class="card-title text-align-center">{$LNG.al_events}</p>
@@ -120,7 +120,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-12">
+            <div class="col-md-12 g-0">
                 <div class="card mt-1 background-border-black-blue shadow"> 
                     <div class="card-body">
                         <p class="card-title text-align-center">{$LNG.al_inside_section}</p>
@@ -128,18 +128,18 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-6 g-0">
                 <div class="card mt-1 mr-1 background-border-black-blue shadow"> 
                     <div class="card-body">
                         <p class="card-title text-align-center">{$LNG.pl_fightstats}</p>
                         <div class="row">
-                            <div class="col-md-4">
+                            <div class="col-md-4 g-0">
                                 <p class="alleanza_zone">{$LNG.pl_fightwon}<br><span class="card-text">{$fightwon|number} {if $totalfight}({round($fightwon / $totalfight * 100, 2)}%){/if}</span></p>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-4 g-0">
                                 <p class="alleanza_zone">{$LNG.pl_fightlose}<br><span class="card-text">{$fightlose|number} {if $totalfight}({round($fightlose / $totalfight * 100, 2)}%){/if}</span></p>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-4 g-0">
                                 <p class="alleanza_zone">{$LNG.pl_fightdraw}<br><span class="card-text">{$fightdraw|number} {if $totalfight}({round($fightdraw / $totalfight * 100, 2)}%){/if}</span></p>
                             </div>
                         </div>

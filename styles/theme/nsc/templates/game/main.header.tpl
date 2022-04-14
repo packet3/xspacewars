@@ -19,6 +19,8 @@
 	{/if}
     <!--content-type-->
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
     <!--keypress-->
     <script type="text/javascript" src="./scripts/base/keypress.js"></script>
      <!--boostrap-->

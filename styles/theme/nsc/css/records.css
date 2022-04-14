@@ -131,7 +131,8 @@
     border-radius: 0px 0px 2px 2px;
     z-index: 2;
 }
-.record_btn_active{
+
+span.record_btn.ico_star.record_btn_active {
 	border:1px solid #454545 !important;
 	cursor:default;
 }

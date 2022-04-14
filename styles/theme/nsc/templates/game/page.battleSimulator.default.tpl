@@ -20,27 +20,35 @@
                class="colore903 rexx24 tooltip" data_tooltip_content="{$LNG.tech.903}" style="background-image:url({$dpath}img/resources/903f.png)">
             </div>
             <div id="tabs">
-               <ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
+               <input type="button" class="rexx25 tooltip" data_tooltip_content="{$LNG.bs_wait}" onclick="return add();" value="+">
+               <ul class="nav nav-tabs" id="myTab" role="tablist">
+                  
                   {section name=tab start=0 loop=$Slots}
-                  <li class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"><a href="#tabs-{$smarty.section.tab.index}">{$LNG.bs_acs_slot} {$smarty.section.tab.index + 1}</a></li>
+                  <li class="nav-item">
+                     {* <button class="nav-link active" id="tabs-{$smarty.section.tab.index}" data-bs-toggle="tab" data-bs-target="#tabs-{$smarty.section.tab.index}" type="button" role="tab" aria-controls="tabs-{$smarty.section.tab.index}">
+                        {$LNG.bs_acs_slot} {$smarty.section.tab.index + 1}
+                     </button> *}
+                  <a class="nav-link tab-links" data-toggle="tab" id="tabs-{$smarty.section.tab.index}" href="#tabs-{$smarty.section.tab.index}">{$LNG.bs_acs_slot} {$smarty.section.tab.index + 1}</a>
+                  </li>
                   {/section}
-                  <input type="button" class="rexx25 tooltip" data_tooltip_content="{$LNG.bs_wait}" onclick="return add();" value="+">
+                  
                </ul>
             <div class="clear"></div>
+              <div class="tab-content">
                {section name=content start=0 loop=$Slots}
-               <div id="tabs-{$smarty.section.content.index}" class="ui-tabs-panel ui-widget-content ui-corner-bottom">
+               <div id="tabs-{$smarty.section.content.index}" class="tab-pane simulationPanel">
                 <div class="rexx14" style="width: 702px;"> 
                     <div class="rexx19">
                         <span class="rexx21">{$LNG.bs_techno}</span>
-                        <span class="rexx20">{$LNG.bs_reset}</span>
-                        <span class="rexx20">{$LNG.bs_reset}</span>
+                        <span id="tech-defend-reset-{$smarty.section.content.index}" class="rexx20">{$LNG.bs_reset}</span>
+                        <span id="tech-attack-reset-{$smarty.section.content.index}" class="rexx20">{$LNG.bs_reset}</span>
                     </div>
                     {foreach $reslist.battle_bonus as $id}
                     <div class="rexx16">
                         <a href="#" onclick="return Dialog.info({$id})"><img src="{$dpath}gebaeude/{$id}.gif" alt="{$LNG.tech.$id}" /></a>
                         <span>{$LNG.tech.{$id}}</span>
-                        <input type="text" size="10" value="{if isset($battleinput.{$smarty.section.content.index}.1.{$id})}{$battleinput.{$smarty.section.content.index}.1.{$id}}{else}0{/if}" name="battleinput[{$smarty.section.content.index}][1][{$id}]" class="rexx18">
-                        <input type="text" size="10" value="{if isset($battleinput.{$smarty.section.content.index}.0.{$id})}{$battleinput.{$smarty.section.content.index}.0.{$id}}{else}0{/if}" name="battleinput[{$smarty.section.content.index}][0][{$id}]" class="rexx17">
+                        <input type="text" data-tech-defend-reset-{$smarty.section.content.index}="tech_defend_reset-{$smarty.section.content.index}" size="10" data-battlesim-index="{$smarty.section.content.index}" value="{if isset($battleinput.{$smarty.section.content.index}.1.{$id})}{$battleinput.{$smarty.section.content.index}.1.{$id}}{else}0{/if}" name="battleinput[{$smarty.section.content.index}][1][{$id}]" class="rexx18">
+                        <input type="text" data-tech-attack-reset-{$smarty.section.content.index}="tech_attack_reset-{$smarty.section.content.index}" size="10" value="{if isset($battleinput.{$smarty.section.content.index}.0.{$id})}{$battleinput.{$smarty.section.content.index}.0.{$id}}{else}0{/if}" name="battleinput[{$smarty.section.content.index}][0][{$id}]" class="rexx17">
                     </div>
                     {/foreach}
                 </div>
@@ -49,15 +57,15 @@
                   <div class="rexx15">
                   <div class="rexx19">
                     <span class="rexx21">{$LNG.tech.200}</span>
-                    <span class="rexx20">{$LNG.bs_reset}</span>
-                    <span class="rexx20">{$LNG.bs_reset}</span>
+                    <span id="ships-defend-reset-{$smarty.section.content.index}" class="rexx20">{$LNG.bs_reset}</span>
+                    <span id="ships-attack-reset-{$smarty.section.content.index}" class="rexx20">{$LNG.bs_reset}</span>
                   </div>
                      {foreach $reslist.fleet as $id}
                      <div class="rexx16">
                         <a href="#" onclick="return Dialog.info({$id})"><img src="{$dpath}gebaeude/{$id}.gif" alt="{$LNG.tech.$id}" /></a>
                         <span>{$LNG.tech.$id}</span>
-                        <input class="fleetAttCountBS rexx18" type="text" size="10" value="{if isset($battleinput.{$smarty.section.content.index}.1.$id)}{$battleinput.{$smarty.section.content.index}.1.$id}{else}0{/if}" name="battleinput[{$smarty.section.content.index}][1][{$id}]">
-                        <input class="fleetDefCountBS rexx17" type="text" size="10" value="{if isset($battleinput.{$smarty.section.content.index}.0.$id)}{$battleinput.{$smarty.section.content.index}.0.$id}{else}0{/if}" name="battleinput[{$smarty.section.content.index}][0][{$id}]">
+                        <input class="fleetAttCountBS rexx18" type="text" data-ships-defend-reset-{$smarty.section.content.index}="ships_defend_reset-{$smarty.section.content.index}" size="10" value="{if isset($battleinput.{$smarty.section.content.index}.1.$id)}{$battleinput.{$smarty.section.content.index}.1.$id}{else}0{/if}" name="battleinput[{$smarty.section.content.index}][1][{$id}]">
+                        <input class="fleetDefCountBS rexx17" type="text" data-ships-attack-reset-{$smarty.section.content.index}="ships_attack_reset-{$smarty.section.content.index}" size="10" value="{if isset($battleinput.{$smarty.section.content.index}.0.$id)}{$battleinput.{$smarty.section.content.index}.0.$id}{else}0{/if}" name="battleinput[{$smarty.section.content.index}][0][{$id}]">
                     </div>
                      {/foreach} 
                   </div>
@@ -65,13 +73,13 @@
                     <div class="rexx15">
                     <div class="rexx19">
                         <span class="rexx21">{$LNG.tech.400}</span>
-                        <span class="rexx20">{$LNG.bs_reset}</span>
+                        <span id="planets-defend-reset-{$smarty.section.content.index}" class="rexx20">{$LNG.bs_reset}</span>
                     </div>
                      {foreach $reslist.defense as $id}
                      <div class="rexx16">
                         <a href="#" onclick="return Dialog.info({$id})"><img src="{$dpath}gebaeude/{$id}.gif" alt="{$LNG.tech.$id}" /></a>
                         <span>{$LNG.tech.$id}</span>
-                        <input class="fleetDefCountBS rexx18" type="text" size="10" value="{if isset($battleinput.{$smarty.section.content.index}.1.$id)}{$battleinput.{$smarty.section.content.index}.1.$id}{else}0{/if}" name="battleinput[{$smarty.section.content.index}][1][{$id}]">
+                        <input class="fleetDefCountBS rexx18" type="text" data-planets-defend-reset-{$smarty.section.content.index}="planets_defend_reset-{$smarty.section.content.index}" size="10" value="{if isset($battleinput.{$smarty.section.content.index}.1.$id)}{$battleinput.{$smarty.section.content.index}.1.$id}{else}0{/if}" name="battleinput[{$smarty.section.content.index}][1][{$id}]">
                     </div>
                      {/foreach}    
                     </div>
@@ -79,6 +87,7 @@
                   <div class="clear"></div>
                </div>
                {/section}
+               </div>
             </div>
             <div class="alleanza57" style="margin-top: 5px;"></div>
             <div class="fleettab1" style="height: 47px;"> 

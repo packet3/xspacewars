@@ -373,7 +373,7 @@ z-index: 99;}
 }
 .shortcut_block .shortcut-link a .shortcut_link_name{
 	color: rgba(153, 153, 153, 0.8);
-	width: 62px;
+	width: 100%;
 	position: absolute;
 	text-overflow: ellipsis;
 	white-space: nowrap;
@@ -926,3 +926,13 @@ z-index: 99;}
     margin-top: 7px;
 }
 
+.delete-shortcut {
+	padding: 1px;
+    font-size: 10px;
+	color: #c9c9c9;
+    
+}
+
+.delete-shortcut:hover {
+	border: 1px solid red;
+}

@@ -60,7 +60,7 @@
                      </div>
                      <div class="shortcut-edit" style="display: none;">
                         <input type="text" class="shortcut-input shortcut-input-name" maxlength="32" name="shortcut[{$shortcutID}][name]" value="{$shortcutRow.name}" placeholder="{$shortcutRow.name}">
-                        <div class="shortcut-delete" title="{$LNG.fl_dlte_shortcut}"></div>
+                        <div class="shortcut-delete" title="{$LNG.fl_dlte_shortcut}">Delete</div>
                      </div>
                      <div class="shortcut-edit" style="display: none;">
                         <input type="text" class="shortcut-input shortcut-input-system" name="shortcut[{$shortcutID}][galaxy]" value="{$shortcutRow.galaxy}" size="3" maxlength="2" placeholder="{$shortcutRow.galaxy}" pattern="[0-9]*">

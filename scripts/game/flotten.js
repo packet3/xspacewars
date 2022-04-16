@@ -1,3 +1,18 @@
+/**
+ *   orginal code based on New Star game, 
+ *   re-wrote code to not use Jquery - Joe
+ *
+ *  XSpace (xspacewars.com)
+ * For the full copyright and license information, please view the LICENSE
+ *
+ * @package XSpace
+ * @author joe <joe@xspacewars.com>
+ * @copyright 2022 Joe
+ * @licence MIT
+ * @version 1.0.0
+ * @link https://github.com/packet3/xspacewars
+ */
+
 var acstime = 0;
 
 function updateVars($reset_acs = true) {
@@ -404,96 +419,243 @@ function AddShortcuts() {
 }
 
 function SaveShortcuts(reedit) {
-    $.getJSON('game.php?page=fleetStep1&mode=saveShortcuts&ajax=1&' + $('.shortcut-row').find("input, select").serialize(), function (res) {
-        $(".shortcut-link").show();
-        $(".shortcut-edit").hide();
-        var deadElements = $(".shortcut-isset").filter(function () {
-            return $('input[name*=name]', this).val() == "" || $('input[name*=galaxy]', this).val() == "" || $('input[name*=galaxy]', this).val() == 0 || $('input[name*=system]', this).val() == "" || $('input[name*=system]', this).val() == 0 || $('input[name*=planet]', this).val() == "" || $('input[name*=planet]', this).val() == 0;
-        });
-        $(".shortcut-isset > .shortcut-link").html(function () {
-            if ($(this).nextAll().find('input[name*=name]').val() === "") {
-                $(this).parent().remove();
-                return false;
-            }
-            var Data = $(this).nextAll();
-            return '<a href="javascript:setTarget(' + Data.find('input[name*=galaxy]').val() + ',' + Data.find('input[name*=system]').val() + ',' + Data.find('input[name*=planet]').val() + ',' + Data.find('select[name*=type]').val() + ');updateVars();"> <span class="shortcut_link_kord">[' + Data.find('input[name*=galaxy]').val() + ':' + Data.find('input[name*=system]').val() + ':' + Data.find('input[name*=planet]').val() + ']</span> <span class="shortcut_link_name">(' + Data.nextAll().find('select[name*=type] option:selected').text()[0] + ') ' + Data.find('input[name*=name]').val() + '</a>';
-        });
-        $('.shortcut-none').remove();
-        if (typeof reedit === "undefinded" || reedit !== true) {
-            NotifyBox(res);
+    let elm = document.querySelector('.shortcut-row').querySelectorAll("input, select")
+    let formData = null
+
+    for (let i = 0; i < elm.length; i++) {
+        if (formData == null) {
+            formData = elm[i].name + '=' + elm[i].value + '&'
         } else {
-            if ($(".shortcut-isset").length) {
-                EditShortcuts();
-            }
+            formData += elm[i].name + '=' + elm[i].value + '&'
         }
-    });
+
+    }
+    let stringToBeEncoded = formData.slice(0, -1)
+
+    let data = encodeURIComponent(stringToBeEncoded)
+    fetch('game.php?page=fleetStep1&mode=saveShortcuts&ajax=1&' + data)
+        .then(response => response.json())
+        .then(data => {
+
+            let shortcutLink = document.querySelectorAll('.shortcut-link')
+            let shortcutEdit = document.querySelectorAll('.shortcut-edit')
+
+            //below was from old code to not sure if it's still used?? kept as reference
+            //   var deadElements = $(".shortcut-isset").filter(function () {
+            //     return $('input[name*=name]', this).val() == "" || $('input[name*=galaxy]', this).val() == "" || $('input[name*=galaxy]', this).val() == 0 || $('input[name*=system]', this).val() == "" || $('input[name*=system]', this).val() == 0 || $('input[name*=planet]', this).val() == "" || $('input[name*=planet]', this).val() == 0;
+            // });
+
+            for (let i = 0; i < shortcutLink.length; i++) {
+                shortcutLink[i].style.display = 'block'
+            }
+
+            for (let i = 0; i < shortcutEdit.length; i++) {
+                shortcutEdit[i].style.display = 'none'
+            }
+
+            let shortcutIsset = document.querySelectorAll('.shortcut-isset')
+            for (let i = 0; i < shortcutIsset.length; i++) {
+                var children = shortcutIsset[i].children
+                let galaxy = null
+                let system = null
+                let planet = null
+                let type = null
+                let name = null
+                for (let j = 0; j < children.length; j++) {
+
+                    if (children[j].querySelector('input[name*=galaxy]') !== null) {
+                        galaxy = children[j].querySelector('input[name*=galaxy]').value
+                    }
+
+                    if (children[j].querySelector('input[name*=system]') !== null) {
+                        system = children[j].querySelector('input[name*=system]').value
+                    }
+
+                    if (children[j].querySelector('input[name*=planet]') !== null) {
+                        planet = children[j].querySelector('input[name*=planet]').value
+                    }
+
+                    if (children[j].querySelector('select[name*=type]') !== null) {
+                        let elm = children[j].querySelector('select[name*=type]')
+                        type = elm.options[elm.selectedIndex].text;
+                    }
+
+                    if (children[j].querySelector('input[name*=name]') !== null) {
+                        name = children[j].querySelector('input[name*=name]').value
+                    }
+
+
+                }
+
+                let shortcutLink = document.querySelectorAll('.shortcut-isset > .shortcut-link')
+                shortcutLink[i].setAttribute('shortcut-name', "shortcut[" + (document.querySelectorAll('.shortcut-link').length) + "-new]")
+                shortcutLink[i].innerHTML = '<a href="javascript:setTarget(' + galaxy + ',' + system + ',' + planet + ',' + '\'' + type + '\');updateVars();"> <span class="shortcut_link_kord">[' + galaxy + ':' + system + ':' + planet + ']</span> <span class="shortcut_link_name">(' + type + ') ' + name + '</a>';
+
+                const div = document.createElement("div")
+                div.classList.add('delete-shortcut')
+                div.addEventListener('click', deleteShortcut)
+                let text = document.createTextNode("Delete")
+                div.appendChild(text)
+                shortcutLink[i].appendChild(div)
+            }
+
+            let shortcutNone = document.querySelector('.shortcut-none')
+            shortcutNone.remove();
+
+            if (typeof reedit === "undefinded" || reedit !== true) {
+                NotifyBox(data);
+            } else {
+                if (document.querySelectorAll('.shortcut-isset').length) {
+                    EditShortcuts();
+                }
+            }
+            //     let deadElements = document.querySelectorAll('.shortcut-isset')
+
+
+        })
+        .catch(error => {
+            // handle the error
+        });
+
+
 }
 
-$(document).ready(function () {
-    $('.shortcut-delete').on('click', function () {
-        $(this).prev().val('');
-        $(this).parent().find('input');
-        SaveShortcuts(true);
-    });
-});
+function deleteShortcut(e) {
+    let elm = e.srcElement.parentElement
+    let topelm = elm.parentElement
+    topelm.remove()
+    SaveShortcuts(true);
+}
+
 
 $(document).ready(function () {
-    $('.countdots').keyup(function () {
-        countDots();
-        colorSet();
-        fleetPoints();
-    });
-    $('form').submit(function () {
-        DotsToCount();
-    });
+    let countdots = document.querySelectorAll('.countdots')
+    for (let i = 0; i < countdots.length; i++) {
+        countdots[i].addEventListener('keyup', function () {
+            countDots();
+            colorSet();
+            fleetPoints();
+        })
+    }
+    // $('.countdots').keyup(function () {
+    //     countDots();
+    //     colorSet();
+    //     fleetPoints();
+    // });
+
+    try {
+        const form = document.getElementsByTagName('form')
+
+        form[0].addEventListener('submit', function (e) {
+
+            e.preventDefault()
+            DotsToCount();
+            e.target.submit()
+        })
+    } catch (err) {
+        //silent fail
+    }
+
+    // $('form').submit(function () {
+    //     DotsToCount();
+    // });
 });
 jQuery(document).ready(function () {
     countDots();
     //below maynot be used??
     fleetPoints();
 });
+
+
 function DotsToCount() {
-    $('.countdots').val(function (i, old) {
-        return old.replace(/[^[0-9]|\.]/g, '');
-    });
+    let countdots = document.querySelectorAll('.countdots')
+    for (let i = 0; i < countdots.length; i++) {
+        countdots[i].value.replace(/[^[0-9]|\.]/g, '');
+    }
+    // $('.countdots').val(function (i, old) {
+    //     return old.replace(/[^[0-9]|\.]/g, '');
+    // });
 }
 
 function countDots() {
-    $('.countdots').val(function (i, old) {
-        return NumberGetHumanReadable(old.replace(/[^[0-9]|\.]/g, ''));
-    });
+    let countdots = document.querySelectorAll('.countdots')
+    for (let i = 0; i < countdots.length; i++) {
+        NumberGetHumanReadable(countdots[i].value.replace(/[^[0-9]|\.]/g, ''))
+    }
+    // $('.countdots').val(function (i, old) {
+    //     return NumberGetHumanReadable(old.replace(/[^[0-9]|\.]/g, ''));
+    // });
 }
 
 function colorSet() {
-    $('.countdots').each(function () {
-        el_value = $(this).val().replace(/[^[0-9]|\.]/g, '');
-        el_name = $(this).attr('name');
-        el_amount = document.getElementById(el_name + '_value').innerHTML.replace(/[^[0-9]|\.]/g, '');
+    let countdots = document.querySelectorAll('.countdots')
+    for (let i = 0; i < countdots.length; i++) {
+        let el_value = countdots[i].value.replace(/[^[0-9]|\.]/g, '');
+        let el_name = countdots[i].getAttribute('name');
+        let el_amount = document.getElementById(el_name + '_value').innerHTML.replace(/[^[0-9]|\.]/g, '');
+
         if (Number(el_value) > Number(el_amount)) {
-            $(this).css({
-                'background': '#c34121'
-            });
-            $(this).css({
-                'border-color': '#f00'
-            });
+            countdots[i].style.background = '#c34121'
+            countdots[i].style.borderColor = '#f00'
+
+            // $(this).css({
+            //     'background': '#c34121'
+            // });
+            // $(this).css({
+            //     'border-color': '#f00'
+            // });
         } else {
-            $(this).css({
-                'background': '#000'
-            });
-            $(this).css({
-                'border-color': '#001a40'
-            });
+            countdots[i].style.background = '#000'
+            countdots[i].style.borderColor = '#001a40'
+            // $(this).css({
+            //     'background': '#000'
+            // });
+            // $(this).css({
+            //     'border-color': '#001a40'
+            // });
         }
-    });
+
+    }
+    // $('.countdots').each(function () {
+    //     el_value = $(this).val().replace(/[^[0-9]|\.]/g, '');
+    //     el_name = $(this).attr('name');
+    //     el_amount = document.getElementById(el_name + '_value').innerHTML.replace(/[^[0-9]|\.]/g, '');
+    //     if (Number(el_value) > Number(el_amount)) {
+    //         $(this).css({
+    //             'background': '#c34121'
+    //         });
+    //         $(this).css({
+    //             'border-color': '#f00'
+    //         });
+    //     } else {
+    //         $(this).css({
+    //             'background': '#000'
+    //         });
+    //         $(this).css({
+    //             'border-color': '#001a40'
+    //         });
+    //     }
+    // });
 }
 
 function fleetPoints() {
     var pointsCost = 0;
-    $('.countdots').each(function () {
-        var $this = $(this);
-        var el_count = parseInt($this.val().replace(/\./g, ''));
-        var el_name = $this.attr('name');
+    let countdots = document.querySelectorAll('.countdots')
+    for (let i = 0; i < countdots.length; i++) {
+        var el_count = parseInt(countdots[i].value.replace(/\./g, ''));
+        var el_name = countdots[i].getAttribute('name')
         pointsCost += pointsPrice[el_name] * el_count;
-    });
-    $('.totalFleetPoints').text(NumberGetHumanReadable(pointsCost));
+    }
+    let totalFleetPoints = document.querySelectorAll('.totalFleetPoints')
+    for (let j = 0; j < totalFleetPoints.length; j++) {
+        totalFleetPoints[j].textContent = NumberGetHumanReadable(pointsCost)
+    }
+
+    // $('.countdots').each(function () {
+    //     var $this = $(this);
+    //     var el_count = parseInt($this.val().replace(/\./g, ''));
+    //     var el_name = $this.attr('name');
+    //     pointsCost += pointsPrice[el_name] * el_count;
+    // });
+    // $('.totalFleetPoints').text(NumberGetHumanReadable(pointsCost));
 }

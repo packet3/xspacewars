@@ -430,7 +430,7 @@ function SaveShortcuts(reedit) {
         }
 
     }
-    let stringToBeEncoded = formData.slice(0, -1)
+    let stringToBeEncoded = formData.slice(0, -1) //remove the last & at end of stirng
 
     let data = encodeURIComponent(stringToBeEncoded)
     fetch('game.php?page=fleetStep1&mode=saveShortcuts&ajax=1&' + data)

@@ -23,7 +23,7 @@
 
 #galactic_header .gal_nazv{
 	color: #5ca6aa;
-    padding-left: 75px;
+    padding-left: 37px;
     float: left;
     width: 90px;
     font-family: "BicubikRegular", Arial, Geneva, sans-serif;
@@ -262,7 +262,7 @@
 	position:relative;
 }
 #galactic_block_1 .gal_user .gal_number{
-	width:25px;
+	width:37px;
 	padding-left:22px;
 	color:#ff0000;
 }
@@ -420,7 +420,7 @@
 
 #galactic_block_1 #gal_block_1_footer{
 	width:100%;
-	height: 50px;
+	height: 65px;
 	padding-top: 13px;
 	padding-bottom: 10px;
 	background: #030c1b;

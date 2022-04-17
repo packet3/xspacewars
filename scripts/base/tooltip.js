@@ -83,6 +83,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
 
         tooltipSticky[i].addEventListener('mouseleave', e => {
+
             const tip = document.getElementById('tooltip');
             tip.classList.remove('tooltip_sticky_div')
             tip.style.display = 'none';

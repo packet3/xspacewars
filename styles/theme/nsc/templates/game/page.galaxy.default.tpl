@@ -108,24 +108,24 @@
                             <span style="color:#0abd00">{$planet}</span></a>
                         </div>
                         {$currentPlanet = $GalaxyRows[$planet]}
-                        <span id="p_{$currentPlanet.planet.id}" class="tooltip gal_img_planet" data_tooltip_content="{$LNG.gl_planet} {$currentPlanet.planet.name} [{$galaxy}:{$system}:{$planet}]">
+                        <span id="p_{$currentPlanet.planet.id}" class="gal_img_planet" data_tooltip_content="{$LNG.gl_planet} {$currentPlanet.planet.name} [{$galaxy}:{$system}:{$planet}]">
                             <div class="gl-actions">
                                 <table class="gl-actions-t">	
                                     <tbody>	
                                         <tr>
-                                        {if $currentPlanet.missions.1}<td><a class="gl-actions-i ri i-mis1 tooltip" href="?page=fleetTable&amp;galaxy={$galaxy}&amp;system={$system}&amp;planet={$planet}&amp;planettype=1&amp;target_mission=1" data_tooltip_content="{$LNG.type_mission_1}"></a></td>{/if}
-                                        {if $currentPlanet.missions.3}<td><a class="gl-actions-i ri i-mis3 tooltip" href="?page=fleetTable&amp;galaxy={$galaxy}&amp;system={$system}&amp;planet={$planet}&amp;planettype=1&amp;target_mission=3" data_tooltip_content="{$LNG.type_mission_3}"></a></td>{/if}
-                                        {if $currentPlanet.missions.4}<td><a class="gl-actions-i ri i-mis4 tooltip" href="?page=fleetTable&amp;galaxy={$galaxy}&amp;system={$system}&amp;planet={$planet}&amp;planettype=1&amp;target_mission=4" data_tooltip_content="{$LNG.type_mission_4}"></a></td>{/if}
-                                        {if $currentPlanet.missions.5}<td><a class="gl-actions-i ri i-mis5 tooltip" href="?page=fleetTable&amp;galaxy={$galaxy}&amp;system={$system}&amp;planet={$planet}&amp;planettype=1&amp;target_mission=5" data_tooltip_content="{$LNG.type_mission_5}"></a></td>{/if}
-                                        {if $currentPlanet.missions.10}<td><a class="gl-actions-i ri i-mis10 tooltip" href="?page=galaxy&amp;action=sendMissle&amp;galaxy={$galaxy}&amp;system={$system}&amp;planet={$planet}" data_tooltip_content="{$LNG.type_mission_10}"></a></td>{/if}            
-                                        {if $currentPlanet.missions.6}<td><a class="gl-actions-i ri i-mis6 tooltip" href='javascript:doit(6,{$currentPlanet.planet.id});' data_tooltip_content="{$LNG.type_mission_6}"></a></td>{/if}
+                                        {if $currentPlanet.missions.1}<td><a class="gl-actions-i ri i-mis1" href="?page=fleetTable&amp;galaxy={$galaxy}&amp;system={$system}&amp;planet={$planet}&amp;planettype=1&amp;target_mission=1" data-toggle="tooltip" title="{$LNG.type_mission_1}"></a></td>{/if}
+                                        {if $currentPlanet.missions.3}<td><a class="gl-actions-i ri i-mis3" href="?page=fleetTable&amp;galaxy={$galaxy}&amp;system={$system}&amp;planet={$planet}&amp;planettype=1&amp;target_mission=3" data-toggle="tooltip" title="{$LNG.type_mission_3}"></a></td>{/if}
+                                        {if $currentPlanet.missions.4}<td><a class="gl-actions-i ri i-mis4" href="?page=fleetTable&amp;galaxy={$galaxy}&amp;system={$system}&amp;planet={$planet}&amp;planettype=1&amp;target_mission=4" data-toggle="tooltip" title="{$LNG.type_mission_4}"></a></td>{/if}
+                                        {if $currentPlanet.missions.5}<td><a class="gl-actions-i ri i-mis5" href="?page=fleetTable&amp;galaxy={$galaxy}&amp;system={$system}&amp;planet={$planet}&amp;planettype=1&amp;target_mission=5" data-toggle="tooltip" title="{$LNG.type_mission_5}"></a></td>{/if}
+                                        {if $currentPlanet.missions.10}<td><a class="gl-actions-i ri i-mis10" href="?page=galaxy&amp;action=sendMissle&amp;galaxy={$galaxy}&amp;system={$system}&amp;planet={$planet}" data-toggle="tooltip" title="{$LNG.type_mission_10}"></a></td>{/if}            
+                                        {if $currentPlanet.missions.6}<td><a class="gl-actions-i ri i-mis6" href='javascript:doit(6,{$currentPlanet.planet.id});' data-toggle="tooltip" title="{$LNG.type_mission_6}"></a></td>{/if}
                                         {foreach $currentPlanet.user.class as $class}
                                         {if $class != 'vacation' && $currentPlanet.planet.phalanx}
-                                        <td><a class="gl-actions-i ri i-mis17 tooltip" href='javascript:OpenPopup(&quot;?page=phalanx&amp;galaxy={$galaxy}&amp;system={$system}&amp;planet={$planet}&amp;planettype=1&quot;, &quot;&quot;, 640, 510);' data_tooltip_content="{$LNG.gl_phalanx}"></a></td>
+                                        <td><a class="gl-actions-i ri i-mis17" href='javascript:OpenPopup(&quot;?page=phalanx&amp;galaxy={$galaxy}&amp;system={$system}&amp;planet={$planet}&amp;planettype=1&quot;, &quot;&quot;, 640, 510);' data-toggle="tooltip" title="{$LNG.gl_phalanx}"></a></td>
                                         {/if}
                                         {foreachelse}
                                         {if $currentPlanet.planet.phalanx}
-                                        <td><a class="gl-actions-i ri i-mis17 tooltip" href='javascript:OpenPopup(&quot;?page=phalanx&amp;galaxy={$galaxy}&amp;system={$system}&amp;planet={$planet}&amp;planettype=1&quot;, &quot;&quot;, 640, 510);' data_tooltip_content="{$LNG.gl_phalanx}"></a></td>
+                                        <td><a class="gl-actions-i ri i-mis17" href='javascript:OpenPopup(&quot;?page=phalanx&amp;galaxy={$galaxy}&amp;system={$system}&amp;planet={$planet}&amp;planettype=1&quot;, &quot;&quot;, 640, 510);' data-toggle="tooltip"title="{$LNG.gl_phalanx}"></a></td>
                                         {/if}
                                         {/foreach}
                                         </tr>
@@ -169,8 +169,8 @@
                         </div>
                         <div class="gal_ico_trash">
                         {if $currentPlanet.debris}
-                            <div class="ico_trash_{if $currentPlanet.debris.metal + $currentPlanet.debris.crystal > 225000000000 }big{elseif $currentPlanet.debris.metal + $currentPlanet.debris.crystal < 225000000000 && $currentPlanet.debris.metal + $currentPlanet.debris.crystal > 7500000000}medium{elseif $currentPlanet.debris.metal + $currentPlanet.debris.crystal < 7500000000}small{/if} ico_animation
-                            tooltip_sticky" data_tooltip_content="
+                            <div onclick="showModal('.gal_ico_trash')" class="ico_trash_{if $currentPlanet.debris.metal + $currentPlanet.debris.crystal > 225000000000 }big{elseif $currentPlanet.debris.metal + $currentPlanet.debris.crystal < 225000000000 && $currentPlanet.debris.metal + $currentPlanet.debris.crystal > 7500000000}medium{elseif $currentPlanet.debris.metal + $currentPlanet.debris.crystal < 7500000000}small{/if} ico_animation
+                            " style="cursor:pointer;" data_tooltip_content="
                                 <table class='tooltip_class_table'>
                                     <tbody>
                                         <tr>
@@ -192,8 +192,8 @@
                             </div>
                         {/if}
                         </div>	
-                        <div class="gal_player_name">
-                            <a class="tooltip_sticky" data_tooltip_content="
+                        <div class="gal_player_name" style="cursor:pointer;">
+                            <a data_tooltip_content="
                                 <table class='tooltip_class_table'>
                                     <tbody>
                                         <tr>
@@ -223,7 +223,7 @@
                                         </tr>                                        
                                     </tbody>
                                 </table>">
-                                <span class="{foreach $currentPlanet.user.class as $class}{if !$class@first} {/if}galaxy-username-{$class}{/foreach}  galaxy-username" {if !$currentPlanet.user.isBuddy}style='color:#eae45c'{/if}>{$currentPlanet.user.username}</span>
+                                <span onclick="showModal('.gal_player_name')"  class="{foreach $currentPlanet.user.class as $class}{if !$class@first} {/if}galaxy-username-{$class}{/foreach}  galaxy-username" {if !$currentPlanet.user.isBuddy}style='color:#eae45c'{/if}>{$currentPlanet.user.username}</span>
                                 {if !empty($currentPlanet.user.class)}
                                 <span>(</span>{foreach $currentPlanet.user.class as $class}{if !$class@first}{/if}<span class="galaxy-short-{$class} galaxy-short">{$ShortStatus.$class}</span>{/foreach}<span>)</span>
                                 {/if}
@@ -231,8 +231,7 @@
                         </div>
                         <div class="gal_ally_name">
                             {if $currentPlanet.alliance}
-                            <a class="tooltip_sticky" data_tooltip_content="
-                                <table class='tooltip_class_table'>
+                            <a style="cursor:pointer;" data_tooltip_content="<table class='tooltip_class_table'>
                                     <tbody>
                                         <tr>
                                             <th>{$LNG.gl_alliance} {$currentPlanet.alliance.name} {$currentPlanet.alliance.member}</th>
@@ -249,7 +248,7 @@
                                         </tr>
                                     </tbody>
                                 </table>">
-                                <span class="galaxy-alliance {foreach $currentPlanet.alliance.class as $class}{if !$class@first} {/if}{$class}{/foreach}"{$class}>{$currentPlanet.alliance.tag}</span>
+                                <span onclick="showModal('.gal_ally_name')" class="galaxy-alliance {foreach $currentPlanet.alliance.class as $class}{if !$class@first} {/if}{$class}{/foreach}"{$class}>{$currentPlanet.alliance.tag}</span>
                             </a>
                             {/if}	
                         </div>
@@ -306,88 +305,7 @@
                             <div class="gal_text_2">{$LNG.gl_avaible_missiles}</div>
                         </div>
                     </div>   
-                    {* 
-                    <div id="block_diplom">
-                        <div id="diplom_shapka">
-                            <div class="diplom_color">Цвета дипломатии</div>
-                            <div class="gal_show_content">
-                                <div id="diplom_btn" class="gal_show_block" onclick="klicdiplo();"></div><!--/show_block-->
-                            </div>
-                        </div>
-                        <div id="diplom_content">
-                            <div class="block_1">
-                                <div class="gal_text_1">Игроки:</div>
-                                <div class="gal_text_2">Альянсы:</div>
-                            </div>
-                            <div class="block_2">
-                                <div class="dipl_color first">
-                                    <div class="yellow"></div>
-                                    <div class="color_text">Друзья</div>
-                                </div>
-
-                                <div class="dipl_color second">
-                                    <div class="red"></div>
-                                    <div class="color_text">Враги</div>
-                                </div>
-                                <div id="attention">Цвета врагов приоритетнее цветов друзей!</div>
-                    
-                                <div class="dipl_color ally first">
-                                    <div class="green"></div>
-                                    <div class="color_text">{$LNG.al_diplo_level.2}</div>
-                                </div>
-                                <div class="dipl_color ally second">
-                                    <div class="white"></div>
-                                    <div class="color_text">{$LNG.al_diplo_level.1}</div>
-                                </div>
-                                <div class="dipl_color ally third">
-                                    <div class="grey_yellow"></div>
-                                    <div class="color_text">{$LNG.al_diplo_level.3}</div>
-                                </div>
-                                <div class="dipl_color ally thour">
-                                    <div class="brown"></div>
-                                    <div class="color_text">{$LNG.al_diplo_level.4}</div>
-                                </div>
-                                <div class="dipl_color ally_2 first">
-                                    <div class="red"></div>
-                                    <div class="color_text">{$LNG.al_diplo_level.5}</div>
-                                </div>
-                                
-                                <div class="dipl_color ally_2 second">
-                                    <div class="green"></div>
-                                    <div class="color_text">{$LNG.al_diplo_level.6}</div>
-                                </div>
-                                
-                                <div class="dipl_color ally_2 third">
-                                    <div class="blue"></div>
-                                    <div class="color_text">Свой альянс</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>  
-                    <div id="diplom_faq">    
-                        <div id="diplom_shapka">
-                            <div class="spravka">Справка</div>
-                            <div class="gal_show_content">
-                                <div id="faq_btn" class="gal_show_block" onclick="kliclegend();"></div><!--/show_block-->
-                            </div>
-                        </div>
-                        <div id="faq_content">
-                            <div class="nad1">Сильный игрок:</div>
-                            <div class="nad2">с</div>
-                            <div class="nad3">Режим отпуска:</div>
-                            <div class="nad4">РО</div>
-                            <div class="nad5">Неактивен более 7 дней:</div>
-                            <div class="nad6">i</div>
-                            <div class="nad7">Слабый игрок:</div>
-                            <div class="nad8">н</div>
-                            <div class="nad9">Заблокирован:</div>
-                            <div class="nad10">бан</div>
-                            <div class="nad11">Неактивен более 28 дней:</div>
-                            <div class="nad12">I</div>        
-                        </div>    
-                    </div>  
-                    *}
-                </div>
+                  </div>
             </div>
         </div>
     </div>

@@ -51,7 +51,7 @@
         <h5 class="card-header">{$LNG.req_ftp_head}</h5>
         <div class="card-body">
             <p class="card-text">{$LNG.req_ftp_desc}</p>
-            <form action="index.php?mode=install&step=4" method="post"> 
+            <form action="index.php?mode=install&step=4" method="post" id="ftpCred"> 
             <input type="hidden" name="post" value="1">
                 <div class="mb-3">  
                     <div class="form-group">

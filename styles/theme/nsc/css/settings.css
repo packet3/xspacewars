@@ -33,7 +33,9 @@ margin:0 14px 7px 14px;
 	width:120px;
 }
 #academy .ach_menu li{
-	width:120px;
+	width: 120px;
+    margin-bottom: 18px;
+    height: 100%;
 }
 #academy .ach_menu li a{
 	width:119px;

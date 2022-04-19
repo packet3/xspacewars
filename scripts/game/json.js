@@ -13,6 +13,7 @@
  * @link https://github.com/packet3/xspacewars
  */
 function AJAX() {
+
 	fetch('./json.php', {
 		method: 'POST',
 		headers: {

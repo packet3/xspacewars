@@ -72,6 +72,7 @@ function instant(event) {
 }
 
 $(document).ready(function () {
+	console.log('search')
 	document.querySelector('#searchtext').addEventListener('keyup', instant)
 	document.querySelector('#type').addEventListener('change', instant)
 

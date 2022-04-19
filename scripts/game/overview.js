@@ -1,5 +1,5 @@
 /**
- *   orginal code based on New Star game, 
+ *   orginal code based on New Star game,
  *   re-wrote code to not use Jquery - Joe
  *
  *  XSpace (xspacewars.com)
@@ -34,10 +34,11 @@ $(document).ready(function () {
 	window.setInterval(function () {
 		let timer = document.querySelectorAll('.timer')
 		for (let i = 0; i < timer.length; i++) {
-			let time = timer[i].getAttribute('time')
+
+			let time = timer[i].getAttribute('data-time')
 			let s = time - (serverTime.getTime() - startTime) / 1000
 
-			if (s <= 0) {
+			if (s == 0) {
 				window.location.href = "game.php?page=overview";
 
 			} else {

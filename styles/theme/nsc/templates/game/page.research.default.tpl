@@ -121,7 +121,7 @@
                                                 <td class='reducefleet_img_ship'><img src='{$dpath}gebaeude/bonus/{$BonusName}.gif'></td>
                                                 <td class='reducefleet_name_ship'><span class='reducefleet_count_ship'>{if $Bonus[0] < 0}-{else}+{/if}{if $Bonus[1] == 0}{abs($Bonus[0] * 100)}%{else}{floatval($Bonus[0])}{/if}</span> {$LNG.bonus.$BonusName}</td>
                                             </tr>
-                                        </table>"><img height="15" width="15" src="{$dpath}gebaeude/bonus/{$BonusName}.gif"></a>
+                                        </table>"><img height="30" width="30" src="{$dpath}gebaeude/bonus/{$BonusName}.gif"></a>
                                     </div>
                                     {/foreach}
                                 </div>

@@ -1,56 +1,110 @@
-function buildsopen(){
-	if(!$('.ico_builds').hasClass('record_btn_active'))
-	{
-        $('.record_btn').removeClass('record_btn_active');	
-        $('.ico_builds').addClass('record_btn_active');
-		$('#u000').show();
-		$('#u100').hide();
-		$('#u200').hide();
-		$('#u400').hide();
+/**
+ *   orginal code based on New Star game, 
+ *   re-wrote code to not use Jquery - Joe
+ *
+ *  XSpace (xspacewars.com)
+ * For the full copyright and license information, please view the LICENSE
+ *
+ * @package XSpace
+ * @author joe <joe@xspacewars.com>
+ * @copyright 2022 Joe
+ * @licence MIT
+ * @version 1.0.0
+ * @link https://github.com/packet3/xspacewars
+ */
+
+function buildsopen() {
+	let icoBuilds = document.querySelector('.ico_builds');
+	let recordBtn = document.querySelectorAll('.record_btn');
+
+	if (!icoBuilds.classList.contains('record_btn_active')) {
+		for (let i = 0; i < recordBtn.length; i++) {
+			recordBtn[i].classList.remove('record_btn_active')
+		}
+
+		icoBuilds.classList.add('record_btn_active')
+
+		document.querySelector('#u000').style.display = 'block'
+		document.querySelector('#u100').style.display = 'none'
+		document.querySelector('#u200').style.display = 'none'
+		document.querySelector('#u400').style.display = 'none'
 	}
+
 };
-function techopen(){
-	if(!$('.ico_tech').hasClass('record_btn_active'))
-	{
-        $('.record_btn').removeClass('record_btn_active');	
-        $('.ico_tech').addClass('record_btn_active');
-		$('#u000').hide();
-		$('#u100').show();
-		$('#u200').hide();
-		$('#u400').hide();
+function techopen() {
+
+	let icoTech = document.querySelector('.ico_tech');
+	let recordBtn = document.querySelectorAll('.record_btn');
+
+	if (!icoTech.classList.contains('record_btn_active')) {
+		for (let i = 0; i < recordBtn.length; i++) {
+			recordBtn[i].classList.remove('record_btn_active')
+		}
+
+		icoTech.classList.add('record_btn_active')
+
+		document.querySelector('#u000').style.display = 'none'
+		document.querySelector('#u100').style.display = 'block'
+		document.querySelector('#u200').style.display = 'none'
+		document.querySelector('#u400').style.display = 'none'
 	}
+
 };
 
-function fleetopen(){
-	if(!$('.ico_fleet').hasClass('record_btn_active'))
-	{
-        $('.record_btn').removeClass('record_btn_active');	
-        $('.ico_fleet').addClass('record_btn_active');
-		$('#u000').hide();
-		$('#u100').hide();
-		$('#u200').show();
-		$('#u400').hide();
+function fleetopen() {
+	let icoFleet = document.querySelector('.ico_fleet');
+	let recordBtn = document.querySelectorAll('.record_btn');
+
+	if (!icoFleet.classList.contains('record_btn_active')) {
+		for (let i = 0; i < recordBtn.length; i++) {
+			recordBtn[i].classList.remove('record_btn_active')
+		}
+
+		icoFleet.classList.add('record_btn_active')
+
+		document.querySelector('#u000').style.display = 'none'
+		document.querySelector('#u100').style.display = 'none'
+		document.querySelector('#u200').style.display = 'block'
+		document.querySelector('#u400').style.display = 'none'
 	}
+
+
 };
-function defopen(){
-	if(!$('.ico_shield').hasClass('record_btn_active'))
-	{
-        $('.record_btn').removeClass('record_btn_active');	
-        $('.ico_shield').addClass('record_btn_active');
-		$('#u000').hide();
-		$('#u100').hide();
-		$('#u200').hide();
-		$('#u400').show();
+function defopen() {
+	let icoShield = document.querySelector('.ico_shield');
+	let recordBtn = document.querySelectorAll('.record_btn');
+
+	if (!icoShield.classList.contains('record_btn_active')) {
+		for (let i = 0; i < recordBtn.length; i++) {
+			recordBtn[i].classList.remove('record_btn_active')
+		}
+
+		icoShield.classList.add('record_btn_active')
+
+		document.querySelector('#u000').style.display = 'none'
+		document.querySelector('#u100').style.display = 'none'
+		document.querySelector('#u200').style.display = 'none'
+		document.querySelector('#u400').style.display = 'block'
 	}
+
+
 };
-function allopen(){
-	if(!$('.ico_star').hasClass('record_btn_active'))
-	{
-        $('.record_btn').removeClass('record_btn_active');	
-        $('.ico_star').addClass('record_btn_active');
-		$('#u000').show();
-		$('#u100').show();
-		$('#u200').show();
-		$('#u400').show();
+function allopen() {
+	let icoStar = document.querySelector('.ico_star');
+	let recordBtn = document.querySelectorAll('.record_btn');
+
+	if (!icoStar.classList.contains('record_btn_active')) {
+		for (let i = 0; i < recordBtn.length; i++) {
+			recordBtn[i].classList.remove('record_btn_active')
+		}
+
+		icoStar.classList.add('record_btn_active')
+
+		document.querySelector('#u000').style.display = 'block'
+		document.querySelector('#u100').style.display = 'block'
+		document.querySelector('#u200').style.display = 'block'
+		document.querySelector('#u400').style.display = 'block'
 	}
+
+
 };

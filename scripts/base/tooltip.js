@@ -67,11 +67,24 @@ document.addEventListener('DOMContentLoaded', function () {
 
     for (var i = 0; i < tooltipSticky.length; i++) {
         tooltipSticky[i].addEventListener('mouseenter', e => {
+
             const tip = document.getElementById('tooltip');
+
             tip.innerHTML = e.target.getAttribute("data_tooltip_content")
             tip.classList.add('tooltip_sticky_div')
-            var mousex = e.pageX - tip.outerHeight / 2;
-            var mousey = e.pageY - tip.outerWidth / 2;
+            var mousex = e.pageX + 20;
+            var mousey = e.pageY + 20;
+            var tipWidth = tip.clientWidth;
+            var tipHeight = tip.clientHeight;
+            var tipVisX = window.innerWidth - (mousex + tipWidth);
+            var tipVisY = window.innerHeight - (mousey + tipHeight);
+            if (tipVisX < 20) {
+                mousex = e.pageX - tipWidth - 20;
+            }
+
+            if (tipVisY < 20) {
+                mousey = e.pageY - tipHeight - 20;
+            }
 
             tip.style.position = "absolute"
             tip.style.top = mousey + 'px'

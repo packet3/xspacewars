@@ -23,7 +23,7 @@
             {foreach $PlanetListing as $ID => $Element}        
 			<div class="separator_h"></div>                   
             <div class="palnet_row {if $current_pid == $ID}active_palnet_row{/if}">
-				<div class="fleet_indicators">
+				{* <div class="fleet_indicators">
                     <img id="{$ID}m1" {if $Element.totalAttacks == 0}style="display:none;"{/if} src="{$dpath}img/iconav/p_select_attack.png" alt="" class="tooltip" data_tooltip_content="{$LNG.pla_attack_1}" />                                    
                     <img id="{$ID}m12" style="display:none;" src="{$dpath}img/iconav/p_select_grab.png" alt="" class="tooltip" data_tooltip_content="Планету захватывают" />
                     <img id="{$ID}m6" {if $Element.totalSpio == 0}style="display:none;"{/if} src="{$dpath}img/iconav/p_select_spio.png" alt="" class="tooltip" data_tooltip_content="{$LNG.pla_attack_2}" />
@@ -35,7 +35,7 @@
                     <img id="{$Element.luna}m10" {if $Element.totalSpioLuna == 0}style="display:none;"{/if} src="{$dpath}img/iconav/p_select_moon_rocket.png" alt="" class="tooltip" data_tooltip_content="{$LNG.pla_attack_7}" />                         
 					{/if}                
                     <div class="clear"></div>
-                </div>	   
+                </div>	    *}
                 <span class="{if $current_pid == $ID}active_urlpalnet{else}urlpalnet{/if}" url="cp={$ID}">
 					<img src='{$dpath}planeten/planet2d/{$Element.image}.png' style="float:left;height: 22px;padding-top: 5px;">
                     <span class="name_palnet"  style="padding-top: 5px;padding-left: 5px;width: 70px;">{$Element.name}</span>

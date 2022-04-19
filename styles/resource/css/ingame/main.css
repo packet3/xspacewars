@@ -1376,6 +1376,7 @@ td.res_bar div{
 }
 .res_current_max,.attack,.federation,.error {
 	color:red !important;
+	font-weight: bold;
 }
 
 #fleetstatustable td{

@@ -425,7 +425,7 @@ a span.active_page{
     margin-left: 18px;
     margin-right: 18px;
     margin-top: 0px;
-    height: 16px;
+    height: 20px;
     border: 1px solid #000;
     -moz-border-radius: 6px;
     -webkit-border-radius: 6px;
@@ -456,10 +456,9 @@ a span.active_page{
 	position:absolute;
 	left:0;
 	top:1px;
-	height:13px;
+	height:16px;
 	z-index:2;
-	height: 12px;
-    margin: 1px;
+	margin: 1px;
     border-radius: 4px;
     transition: 0.4s linear;
     transition-property: width, background-color;
@@ -490,7 +489,7 @@ a span.active_page{
 	overflow:hidden;
 	height:15px;
 	line-height:15px;
-	font-size:11px;
+	font-size:13px;
 	text-align:center;
 	padding-left:3%;
 }
@@ -781,8 +780,8 @@ a span.active_page{
 	-webkit-border-radius: 3px;
 	border-radius: 3px;
 	background:#08182d url(../img/general/bg_left_menu.gif) repeat-y;
-	width:240px;
-	padding:5px;	
+	width:254px;
+	padding:12px;	
 	overflow:visible;
 	box-shadow: inset 0 1px 1px rgb(20, 44, 82), inset 0 -1px 0px rgba(63, 59, 113, 0.2), 0 9px 16px 0 rgba(0, 0, 0, 0.3), 0 4px 3px 0 rgba(0, 0, 0, 0.3), 0 0 0 1px #040f1f;
 }
@@ -1034,7 +1033,7 @@ a span.active_page{
     height: 29px;
     line-height: 29px;
 	color: #999;
-    width: 246px;
+    width: 254px;
     height: 29px;
     line-height: 29px;
     background: rgba(0, 0, 0, 0.45);
@@ -1145,7 +1144,7 @@ a span.active_page{
 	
 	.nuovomenudestra { 
 	display: block;
-	width: 15px;
+	width: 26px;
 	background:#040f1f;
 	padding: 0 7px;
 	float: left;
@@ -1175,12 +1174,12 @@ a span.active_page{
     font-size: 12px;
     font-family: Tahoma, Arial, Geneva, sans-serif;
 	}
-    	.otopnav {
+    .otopnav {
     background:#08162b url(../img/general/bg_res_nava.jpg) repeat-x !important;    
 	-webkit-box-shadow: inset 0 1px 1px rgb(20, 44, 82), inset 0 -1px 0px rgba(63, 59, 113, 0.2), 0 9px 16px 0 rgba(0, 0, 0, 0.3), 0 4px 3px 0 rgba(0, 0, 0, 0.3), 0 0 0 1px #040f1f !important;
     -moz-box-shadow: inset 0 1px 1px rgb(20, 44, 82), inset 0 -1px 0px rgba(63, 59, 113, 0.2), 0 9px 16px 0 rgba(0, 0, 0, 0.3), 0 4px 3px 0 rgba(0, 0, 0, 0.3), 0 0 0 1px #040f1f !important;
     box-shadow: inset 0 1px 1px rgb(20, 44, 82), inset 0 -1px 0px rgba(63, 59, 113, 0.2), 0 9px 16px 0 rgba(0, 0, 0, 0.3), 0 4px 3px 0 rgba(0, 0, 0, 0.3), 0 0 0 1px #040f1f !important;
-	height:40px !important;
+	height:48px !important;
 	-webkit-border-radius: 0px 0px 8px 8px !important;
 	-moz-border-radius:  0px 0px 8px 8px !important;
 	-ms-border-radius:  0px 0px 8px 8px !important;

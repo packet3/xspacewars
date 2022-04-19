@@ -1614,3 +1614,24 @@ body.swal2-shown > [aria-hidden="true"] {
   filter: blur(10px);
 }
 
+/*Search Page Styles --  will be broken into their own CSS oneday*/
+.ico_post {
+  float: left;
+  width: 30px;
+  height: 30px;
+  background: url(../img/iconav/mesages.png) no-repeat center;
+}
+
+.ico_friend {
+  float: left;
+  width: 30px;
+  height: 30px;
+  background: url(../img/iconav/friend.png) no-repeat center;
+}
+
+.ico_animation {
+  opacity: 0.75;
+  -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity = 75);
+  filter: alpha(opacity = 75);
+  animation-duration: 0.5s;
+}

@@ -1,10 +1,9 @@
-function instant(event){
-	if (event.keyCode == $.ui.keyCode.ENTER) {
+function instant(event) {
+
+	if (event.keyCode === 13) { //13 => is the ENTER key
 		event.preventDefault();
 	}
-	
-	if ($.inArray(event.keyCode, [
-		91, // WINDOWS
+	const keyCodes = [91, // WINDOWS
 		18, // ALT
 		20, // CAPS_LOCK
 		188, // COMMA
@@ -35,19 +34,45 @@ function instant(event){
 		9, // TAB
 		38, // UP
 		91 // WINDOWS
-	]) !== -1) {
+	];
+
+	if (keyCodes.includes(event.keyCode)) {
 		return;
 	}
-	
-	$('#loading').show();
-	$.get('game.php?page=search&mode=result&type='+$('#type').val()+'&search='+$('#searchtext').val()+'&ajax=1', function(data) {
-		$('#resulttable').remove();
-		$('#content > table').after(data);	
-		$('#loading').hide();
-	});
+
+	document.querySelector('#loading').style.display = 'block'
+	// $('#loading').show();
+
+	let typeValue = document.querySelector('#type').value;
+	let searchtext = document.querySelector('#searchtext').value;
+	let searchData = document.querySelector('#searchresults')
+
+	fetch('game.php?page=search&mode=result&type=' + typeValue + '&search=' + searchtext + '&ajax=1')
+		.then(response => response.text())
+		.then(data => {
+			if (searchtext == "") {
+				searchData.style.display = 'none'
+				document.querySelector('#loading').style.display = 'none'
+			} else {
+				searchData.style.display = 'block'
+				if (document.querySelector('#resulttable') != null) {
+					document.querySelector('#resulttable').remove();
+
+				}
+				searchData.innerHTML = data
+
+				document.querySelector('#loading').style.display = 'none'
+			}
+
+
+
+		})
+
+
 }
 
-$(document).ready(function() {
-	$('#searchtext').on('keyup', instant);
-	$('#type').on('change', instant);
+$(document).ready(function () {
+	document.querySelector('#searchtext').addEventListener('keyup', instant)
+	document.querySelector('#type').addEventListener('change', instant)
+
 });

@@ -14,6 +14,8 @@
 		</td>
 	</tr>
 </table>
+<div id="searchresults">
+</div>
 </div>
 </div>
 <div class="clear"></div>

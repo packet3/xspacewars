@@ -21,7 +21,7 @@
                                 <form action="game.php?page=research" method="post" class="build_form">
                                     <input type="hidden" name="queuetype" value="1">
                                     <input type="hidden" name="cmd" value="fast">
-                                    <button type="submit" class="build_submit onlist tooltip" data_tooltip_content="{$LNG.cost} {if $need_dm<10}{10}{else}{pretty_number($need_dm)}{/if} {$LNG.tech.921}"  style="float: right; line-height: 43px;">
+                                    <button type="submit" class="build_submit onlist tooltip" data_tooltip_content="{$LNG.cost} {if $need_dm<10}{10}{else}{pretty_number($need_dm)}{/if} {$LNG.tech.921}"  style="top: 27px;line-height: 43px;">
                                         <img src="{$dpath}img/iconav/up.png" alt="" width="16" height="16">
                                     </button>
                                 </form>
@@ -115,7 +115,7 @@
                                 {if !empty($Element.elementBonus)}
                                 <div class="res_global_info">
                                     {foreach $Element.elementBonus as $BonusName => $Bonus}
-                                    <div class="res_info info_res_901"><a class="tooltip" data_tooltip_content="
+                                    <div class="res_info info_mel"><a class="tooltip" data_tooltip_content="
                                         <table class='reducefleet_table'>
                                             <tr>
                                                 <td class='reducefleet_img_ship'><img src='{$dpath}gebaeude/bonus/{$BonusName}.gif'></td>

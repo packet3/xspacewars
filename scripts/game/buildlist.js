@@ -99,7 +99,7 @@ function counting(id) {
 
 
 
-	console.log('metal Count', metal)
+
 
 	if (typeof Data.costResources[901] !== "undefined") {
 		res = Number(Data.costResources[901]);
